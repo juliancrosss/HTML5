@@ -65,3 +65,8 @@ Se han hecho cambios a los elementos particulares en HTML5 por lo que es más f�
 * Muchos de los elementos ya no necesitan una etiqueta de cierre: </ li> </ dt>, </ dd> </ tr> </ th>, </ td> </ thead>, </ tfoot>, </ tbody> </ option>, </ optgroup>, </ p> (en la mayoría de los casos), </ head>, </ body> y </ html>. Los navegadores más antiguos suelen añadir el cierre de las etiquetas de forma automática en tiempo de render. Se recomienda, sin embargo, el cierre de las etiquetas que, naturalmente, se cerraron: los que delimitan una zona en particular en el documento.
 
 * Los valores de atributo sólo tienen que ser encomillado si contienen espacios o algunos caracteres no alfanuméricos, en lugar de escribir < link rel = href "stylesheet" = "style.css" >, podríamos haber utilizado < link rel=stylesheet href=style.css >  en lugar. Sin embargo, para la compatibilidad con navegadores antiguos, puede que sea más prudente utilizar todavía las comillas ... 
+
+##Nuevos elementos agregados a HTML5
+
+	HTML5 element	Description
+	header 		Introducción de "elementos de seccionamiento": un artículo, una sección, la entrada del documento 				(header page). Normalmente, el encabezado de un sitio web que aparece en la parte superior de cada 				página, o un header de un largo < article > o de un < section > largo
