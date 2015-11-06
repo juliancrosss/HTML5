@@ -39,3 +39,29 @@ Se han hecho cambios a los elementos particulares en HTML5 por lo que es más f�
 *Con HTML5, sólo hay una manera de indicar el tipo de documento, y es tan simple que no hay razón para olvidarse de él:*
 
 	<!doctype html>
+	
+##El "type" atributo es opcional
+
+*Con el atributo rel = " stylesheet ", ya no es necesario indicar type = " text / css " (a partir de la especificación: "el tipo por defecto para los recursos dados  es por la palabra clave de stylesheet de text / css ".)*
+
+	<link href="file.css" rel="stylesheet"/>
+
+*en lugar de:*
+
+	<link href="file.css" rel="stylesheet" type="text/css"/>
+	
+*con javascript*
+
+	<script src="script.js"></script>
+	
+*en lugar de:*
+
+	<script type="text/javascript" src="script.js"></script>
+	
+##Mas fexible sintaxis restricciones
+
+* Gracias a HTML5, puede omitir las comillas (no siempre, pero la mayoría de las veces) o usar mayúsculas, minúsculas o una combinación de los dos.
+
+* Muchos de los elementos ya no necesitan una etiqueta de cierre: </ li> </ dt>, </ dd> </ tr> </ th>, </ td> </ thead>, </ tfoot>, </ tbody> </ option>, </ optgroup>, </ p> (en la mayoría de los casos), </ head>, </ body> y </ html>. Los navegadores más antiguos suelen añadir el cierre de las etiquetas de forma automática en tiempo de render. Se recomienda, sin embargo, el cierre de las etiquetas que, naturalmente, se cerraron: los que delimitan una zona en particular en el documento.
+
+* Los valores de atributo sólo tienen que ser encomillado si contienen espacios o algunos caracteres no alfanuméricos, en lugar de escribir <link rel = href "stylesheet" = "style.css">, podríamos haber utilizado <link rel=stylesheet href=style.css>  en lugar. Sin embargo, para la compatibilidad con navegadores antiguos, puede que sea más prudente utilizar todavía las comillas ... 
