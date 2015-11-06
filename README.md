@@ -68,5 +68,41 @@ Se han hecho cambios a los elementos particulares en HTML5 por lo que es más f�
 
 ##Nuevos elementos agregados a HTML5
 
-	HTML5 element	Description
-	header 		Introducción de "elementos de seccionamiento": un artículo, una sección, la entrada del documento 				(header page). Normalmente, el encabezado de un sitio web que aparece en la parte superior de cada 				página, o un header de un largo < article > o de un < section > largo
+
+* header 		
+	
+	Introducción de "elementos de seccionamiento": un artículo, una sección, la entrada del documento 				(header page). Normalmente, el encabezado de un sitio web que aparece en la parte superior de cada 				página, o un header de un largo < article > o de un < section > largo
+
+* footer
+
+	Contiene el pie de página de un sitio, un largo < article >, o un largo < section >
+	
+* nav
+
+	Sección que contiene los principales enlaces de navegación (en el documento o en otras páginas).
+	
+* article
+
+	Contenido Independiente, que se puede extraer individualmente del documento y sindicados (RSS o equivalente) sin 		penalizar su comprensión. Normalmente, una entrada de blog.
+	
+* section
+	
+	Sección genérica utilizada para agrupar diferentes artículos para diferentes propósitos o temas, o para definir las 		diferentes secciones de un solo artículo. Generalmente se utiliza con un header.
+
+* time
+
+	Se utiliza para marcar los tiempos y las fechas.
+	
+* aside
+
+	Sección cuyo contenido no es necesariamente directamente relacionado con el contenido principal que lo rodea, pero 		puede proporcionar información adicional.
+	
+* figure y figcaption
+
+	Se utiliza para encapsular una figura como un único elemento, y contiene una descripcion para la figura, 			respectivamente.
+	
+* main
+
+	El principal elemento representa el contenido principal del cuerpo de un documento o aplicación. El área de contenido 		principal consta de contenido que se relaciona directamente con o se amplía sobre el tema central de un documento o la 	funcionalidad central de una aplicación. No puede haber un solo < main > en un documento.
+	
+
