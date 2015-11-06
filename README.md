@@ -113,7 +113,27 @@ Se han hecho cambios a los elementos particulares en HTML5 por lo que es más f�
 		contenido principal consta de contenido que se relaciona directamente con o se amplía sobre el tema central de
 		un documento o la funcionalidad central de una aplicación. No puede haber un solo < main > en un documento.
 	
-##Como mezclar las nuevas etiquetas juntas
+##Mas sobre Article y Section
 
+*puede un article contener un section?*
 
+*Puede que no sea claro si un < section > puede contener uno o varios < article > elementos, o si un < article > puede contener uno o varios < section > elementos.*
+
+* El elemento < article > fue diseñado para partes independientes de un documento que con el tiempo sería sindicado en RSS.
+
+* < section > elementos se utilizan para cortar una parte lógica en subpartes.
+
+* Un < article > se puede cortar en diferentes < section > elementos!
+
+		<article id="id1">
+   			<section id="id1part1">
+     				<h2>Introduction</h2>
+   			</section>
+   			<section id="id1part2">
+     				<h2>My travel to Colombia</h2>
+   			</section>
+   			<section id="id1part3">
+     				<h2>Return to France</h2>
+   			</section>
+		</article>
 
