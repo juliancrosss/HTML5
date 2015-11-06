@@ -113,4 +113,7 @@ Se han hecho cambios a los elementos particulares en HTML5 por lo que es más f�
 		contenido principal consta de contenido que se relaciona directamente con o se amplía sobre el tema central de
 		un documento o la funcionalidad central de una aplicación. No puede haber un solo < main > en un documento.
 	
+##Como mezclar las nuevas etiquetas juntas
+
+
 
