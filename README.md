@@ -136,4 +136,75 @@ Se han hecho cambios a los elementos particulares en HTML5 por lo que es más f�
      				<h2>Return to France</h2>
    			</section>
 		</article>
+		
+* Un < section > se puede cortar en diferentes < articles > elementos, también!
+
+		<section id="id1">
+   			<article id="id1part1">
+     				<h2>Introduction</h2>
+   			</article>
+   			<article id="id1part2">
+     				<h2>My travel to Colombia</h2>
+   			</article>
+   			<article id="id1part3">
+     				<h2>Return to France</h2>
+   			</article>
+		</section>
+		
+##podemos poner un nav en un article?
+
+*Sí se puede, en caso de que le gustaría proponer algunos enlaces de navegación con cada entrada del blog, por ejemplo:*
+
+		<article>
+   			<header>
+     				<h1>Blog post title</h1>
+       				<p>Author: Michel</p>
+   			</header>
+   			<nav>
+       				<ul>
+           				<li><a href="...">Next post</a></li>
+           				<li><a href="...">Previous post</a></li>
+           				<li><a href="...">Contact author</a></li>
+       				</ul>
+   			</nav>
+   			<p>Content...</p>
+   			<footer>
+     				<p>Posted by Michel, the <time datetime="2012-02-02">February 2, 
+     				   2012</time> </p>
+   			</footer>
+		</article>
+		
+*En ese caso, el < nav > elemento propone enlaces de navegación a la siguiente o la anterior entrada del blog, así como un enlace para ponerse en contacto con el autor del blog.*
+
+*También tenga en cuenta que hemos utilizado en este ejemplo, un < footer > en la entrada del blog.*
+
+##¿Que pasara con el elemento < div > ? ¿Sigue siendo útil?
+
+*Los nuevos elementos se han diseñado principalmente para estructurar mejor el código de las páginas HTML, como los generados por el blog o software CMS, sin embargo no hay que olvidar que añaden nueva semántica y se tomarán en cuenta a través de:*
+
+* Los navegadores de forma nativa o extensiones de navegadores, es decir,  generar automáticamente una tabla de contenidos,      una vista de esquema del documento, para la aplicación de reglas CSS por defecto para estos elementos, etc. Véase por ejemplo   el estructurador HTML5 (extensión de Chrome)
+* "https://chrome.google.com/webstore/detail/html5-outliner/afoibpobokebhgfnknfndkgemglggomo".
+* rastreadores Web
+
+*Puedemos usar < div > elementos en todos los casos en los elementos estructurales o propuestas que no se ajustan a sus necesidades: para la definición de algunos contenidos que deben ser de estilo.*
+
+##Titulos y elementos estructurales
+
+*Ahora vamos a presentar algunas mejores prácticas para comenzar a utilizar < section >, < article >, < nav >, < aside >, en particular, en relación con el uso de encabezados (H1, H2, H3, H4, H5 y H6).*
+
+*use <H1> ... <H6> para los títulos, como lo han hecho CON HTML4 ...*
+
+*Desde el principio, HTML ha tenido elementos: <h1> .. <h6>. Estos elementos se utilizan para mostrar los titulos con diferentes tamaños por defecto, cuando no se utiliza CSS.*
+
+##Uso de los titulos y las nuevas seccionamiento elementos (section, article, aside, nav)
+
+*Definicion de titulos contenido y seleccionamiento contenido*
+
+*El < section >, < article >, < nav > y < aside > elementos se denominan "elementos de seccionamiento". Ellos cortan un documento en rodajas que llamamos "secciones".*
+
+
+
+
+
+
 
