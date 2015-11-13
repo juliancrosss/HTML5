@@ -203,6 +203,44 @@ Se han hecho cambios a los elementos particulares en HTML5 por lo que es más f�
 *El < section >, < article >, < nav > y < aside > elementos se denominan "elementos de seccionamiento". Ellos cortan un documento en rodajas que llamamos "secciones".*
 
 
+*La especificación HTML5 dice que "cada elemento de seccionamiento potencialmente tiene un encabezado y tiene también un esquema asociado". < h1 > ... < h6 > se denominan títulos, y definir el encabezado de una sección (ya sea marcada explícitamente el uso de seccionamiento elementos de contenido, o implícita por el contenido de encabezado en sí). Esto significa eso:*
+
+
+	<body>
+    		<h1>Title of my document</h1>
+    		...
+	</body>
+	
+define la cabecera de una sección implícitamente, mientras que:
+
+	<body>
+	 ...
+   	<section>
+      		<h1>Title of my section</h1>
+      		...
+   	</section>
+	</body>
+	
+... Define el título de la sección explícita (su elemento padre < section >).
+
+Utilice múltiples titulos de distinto rangos, con el seleccionador de contenido
+
+*Posteriores titulos de rango igual o superior comienzan nuevas (implícitas) secciones, los titulos de menor rango comienzan implicaban que forman parte de la anterior. En ambos casos, el elemento representa el encabezamiento de la sección implícita.*
+
+	<body>
+ 	<section>
+    		<h1>This H1 is the heading of an explicit section</h1>
+    		...
+       		<h2>This H2 is a subheading, part of the same section
+           	    (lower rank)</h2>
+            	....
+    		<h1>This H1 starts an implicit new section in the explicit section (equal or higher rank)</h1>
+        	...
+        	<h2>This is a H2 heading in the new section that has just started</h2>
+            	...
+ 	</section>
+	</body>
+
 
 
 
