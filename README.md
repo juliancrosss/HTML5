@@ -402,5 +402,157 @@ BEST PRACTICE 2: TRY NOT TO RELY ON IMPLICIT SECTIONING, USE <SECTION>, <ARTICLE
  	</aside>
 	</body>
 
+##¿Qué pasa con el < main > elemento que se encuentra en la especificación HTML5?
 
+*si utiliza < nav > / < header > / < footer > etc, para estructurar el documento, también puede utilizar < main > para identificar el contenido principal del documento. Si lo hace, ofrece una estructura de documento navegable para los usuarios de tecnología de asistencia, así como los ganchos de estilo para los desarrolladores.*
+
+*Hemos visto los diferentes elementos de seccionamiento de HTML5, así que ¿por qué no hablar de la < main > elemento anteriormente en esta parte del curso? ¿No debería < main > ... </ main > ser utilizado en lugar de < div class = "main" > ... </ div >*
+
+*Un documento ha sido escrito por el grupo de trabajo de HTML5, que detalla los diferentes casos de uso para este elemento:*
+http://www.w3.org/html/wg/wiki/User:Sfaulkne/main-usecases#Introduction
+
+*Este elemento está sujeto a algunas restricciones:*
+
+*No debe haber más de un < main > en un documento,*
+
+*No debe ser un descendiente de un < article >, < aside >, < footer >, < header > o < nav > elemento.*
+
+*Y finalmente aquí son algunos ejemplos (de la especificación HTML5) que mezclan la < main > elemento con los demás elementos de seccionamiento ya vistos en el curso:*
+
+	<!-- other content -->
+	<main>
+   		<h1>Skateboards</h1>
+   		<p>The skateboard helps kids to get around.</p>
+   		<article>
+      			<h2>Longboards</h2>
+      			<p>Longboards are a type of skateboard with a longer
+			    wheelbase and larger, softer wheels.</p>
+      			<p>... </p>
+      			<p>... </p>
+   		</article>
+   		<article>
+      			<h2>Electric Skateboards</h2>
+      			<p>These no longer require the propelling of the skateboard by means of the feet; rather an electric 				   motor propels the board, fed by an electric battery.</p>
+      			<p>... </p>
+      			<p>... </p>
+   		</article>
+	</main>
+ 
+	<!-- other content -->
+	
+*He aquí otro ejemplo (también de la especificación). Aquí el < main > contiene un elemento <nav> elemento que consta de enlaces a las subsecciones de los contenidos principales:*
+
+	<!DOCTYPE html>
+ 	<html>
+   	<head>
+     		<title>Graduation Ceremony Summer 2022</title>
+   	</head>
+ 	<body>
+ 	<header>The Lawson Academy:
+   	<nav>
+     	<h2>Click these links to navigate...</h2>
+     	<ul>
+        	<li><a href="courses.html">Courses</a></li>
+        	<li><a href="fees.html">Fees</a></li>
+        	<li><a>Graduation</a></li>
+     	</ul>
+   	</nav>
+ 	</header>
+	<main>
+  		<h1>Graduation</h1>
+  	<nav>
+     		<h2>Please choose:</h2>
+     	<ul>
+        	<li><a href="#ceremony">Ceremony</a></li>
+        	<li><a href="#graduates">Graduates</a></li>
+        	<li><a href="#awards">Awards</a></li>
+     	</ul>
+  	</nav>
+  		<h2 id="ceremony">Ceremony</h2>
+  		<p>Opening Procession</p>
+  		<p>Speech by Valedictorian</p>
+  		<p>Speech by Class President</p>
+  		<p>Presentation of Diplomas</p>
+  		<p>Closing Speech by Headmaster</p>
+  		<h2 id="graduates">Graduates</h2>
+  	<ul>
+     		<li>Eileen Williams</li>
+     		<li>Andy Maseyk</li>
+     		<li>Blanca Sainz Garcia</li>
+     		<li>Clara Faulkner</li>
+     		<li>Gez Lemon</li>
+     		<li>Eloisa Faulkner</li>
+  	</ul>
+  		<h2 id="awards">Awards</h2>
+  	<ul>
+    		<li>Clara Faulkner</li>
+    		<li>Eloisa Faulkner</li>
+    		<li>Blanca Sainz Garcia</li>
+  	</ul>
+	</main>
+	<footer>Copyright 2012 B.lawson</footer>
+	</body>
+	</html>
+	
+*MEJORES PRÁCTICAS Por cuestiones de accesibilidad, una buena práctica consiste en dividir el contenido de la página en "regiones" definidos por los cinco 5 elementos (aside, footer, header, main y  nav).*
+
+##INTRODUCCIÓN: diseños sencillos utilizando los nuevos elementos estructurantes y CSS3
+
+*Ejemplos de diseños de página clásicos*
+
+*INTRODUCCIÓN En esta sección, mostraremos algunas técnicas de diseño CSS "clásicos" para el diseño de una página HTML que utiliza los nuevos elementos de seccionamiento.*
+
+*Ejemplo 1: Un < section > A LA IZQUIERDA Y UN < aside > A la derecha, USO de float  y el ancho "WIDTH" propiedades CSS*
+
+*Ejemplo*
+
+	<header>
+ 		<code>&lt;header&gt;</code>
+	</header>
+ 
+	<section>
+ 		<code>&ltsection&gt; <br> float: left;</code>
+	</section>
+ 
+	<aside>
+ 		<code>&lt;aside&gt; <br> float: right;</code>
+	</aside>
+ 
+	<footer>
+ 		<code>&lt;footer&gt;</code>
+	</footer>
+
+*Here we use the CSS rule float:left for the <section> and the CSS rule float:right for the <aside>. When an element floats, it goes out of the normal flow of the HTML element. Then by default it floats to the edge of its parent; and its size depends on the elements it contains. So, in order to fill the whole horizontal space, we prefer here to "force the width" by setting the CSS width property with a percentage.  So we took width: 63% for the <section> on the left and width:30% for the <aside> on the right.*
+
+	code {
+  		background: #2db34a;
+  		border-radius: 6px;
+  		color: #fff;
+  		display: block;
+  		font: 14px/24px "Source Code Pro", Inconsolata, "Lucida Console", Terminal, "Courier New", Courier;
+  		padding: 24px 15px;
+  		text-align: center;
+	}
+	header,
+	section,
+	aside,
+	footer {
+  		margin: 0 1.5% 24px 1.5%;
+	}
+	section {
+  		float: left;
+  		width: 63%;
+	}	
+	aside {
+  		float: right;
+  		width: 30%;
+	}
+	footer {
+  		clear: both;
+  		margin-bottom: 0;
+	}
+
+*Ejemplo 2: TRES SECCIONES centrada, DE TAMAÑO EQUAL, UTILIZANDO TAMBIÉN el flotador y el ancho de las propiedades CSS*
+
+*Ejemplo*
 
