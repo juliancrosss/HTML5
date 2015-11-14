@@ -773,3 +773,369 @@ Version 1: no polyfill
 
 *Si se utiliza sin atributos, el valor entre la apertura < time > y cierre </ time > debe seguir la sintaxis propuesta por el pliego de condiciones para que las máquinas puede entenderlo (misma sintaxis que el presentado para el atributo datetime en la sección anterior). Sin embargo, se recomienda utilizar un atributo de fecha y hora, ya que da más libertad en la forma en que puede mostrar la fecha / hora / duración en un formato legible.*
 	
+##El < mark > elemento
+
+*El HTML < mark > etiqueta se utiliza para indicar el texto como está marcado o marcada con fines de referencia, debido a su relevancia en otro contexto.*
+
+Algunos casos de uso:
+
+*Resultados de búsqueda Pantalla con cadenas de búsqueda resaltados en los resultados.*
+
+*Resaltar partes importantes de un texto, como "partes citar", etc.*
+
+*Reemplace < strong > y < em > por < mark > cuando adecuado.*
+
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset=utf-8 />
+	<title>JS Bin</title>
+	</head>
+	<body>
+  		<p>Project is due in <mark>.zip format</mark> next monday.</p>
+	</body>
+	</html>
+	
+*ejemplo*
+
+	<body>
+	<pre>
+		<code><mark>var</mark> i = 3;</code>
+	</pre>
+	<p>The var keyword is used to declare a variable in JavaScript.</p>
+	</body>
+
+##CHANGE THE DEFAULT STYLE OF THE <MARK> ELEMENT
+
+*Si no te gusta el fondo amarillo por defecto, puede utilizar CSS para cambiar el estilo de la < mark > elemento: Por ejemplo:*
+
+	mark {
+    		background-color: green;
+    		color: yellow;
+	}
+	
+##El nuevo atributo HTML5 download para <A HREF>
+
+*EL CAMINO VIEJO permitirá descargar archivos utilizando HTML y HTTP*
+
+*Todo el mundo sabe la forma clásica de hacer hipervínculos, utilizando <a href="..."> algunos </a> texto. Lo que ocurre cuando se hace clic en el hipervínculo depende del tipo MIME recibido por el navegador. Si usted se conecta a un archivo el navegador sabe render (una página html, gif, jpg, png o imagen, etc.) hay una buena probabilidad de que el tipo MIME recibido por el navegador será algo como esto:*
+
+	Content-type: text/html, text/plain, image/gif, image/jpg, etc.
+	
+	<a href="toto.jpg">
+    		please right click this link to download
+    		the toto.jpg picture</a>
+    		
+  *... le pedirá al servidor HTTP remoto para enviar el archivo toto.jpg. El navegador recibirá en la cabecera HTTP respuesta del servidor (y por defecto el navegador mostrará la imagen en una nueva pestaña):*
+  
+  	...
+ 	Content-type: image/jpg
+	...
+*Sin embargo, si el enlace apunta a un cierto código PHP, Java de código servlet, o cualquier tipo de script / aplicación en el lado del servidor, este código de servidor remoto puede enviar en su respuesta HTTP de un tipo de contenido que puede forzar al navegador a descargar la imagen en lugar de hacerla.*
+
+*También podrá proponer un nombre para el archivo a descargar que puede ser distinta a la que aparece en la URL del atributo href. Esto se puede hacer mediante la generación, además de la línea de tipo de contenido en la cabecera HTTP de respuesta, una línea Content-Disposición que tiene este aspecto:*
+
+	Content-Disposition: attachment; filename="MyImage.png";
+	
+##NEW WAY TO DOWNLOAD A FILE USING AN ARBITRARY NAME: THE DOWNLOAD ATTRIBUTE
+
+*HTML5 propuso el uso de un nuevo atributo llamado de descarga para descargar recursos en lugar de navegar a ellos. El siguiente ejemplo muestra cómo activar la descarga de una imagen por el navegador (en lugar de hacerla, que es el comportamiento por defecto) con un nombre diferente del nombre del recurso.*
+
+	<a href="/asset-v1:W3Cx+HTML5.1x+4T2015+type@asset+block/normal.gif"
+   		download="MichelBuffa.gif">
+    		download a picture of Michel Buffa
+	</a>
+	
+*Este hecho obligará a la descarga de una imagen con un nombre de archivo diferente de su nombre de archivo original en el lado del servidor. Aquí hay una captura de pantalla del navegador de Internet, mientras que la descarga de la imagen. Podemos ver en la barra de estado el nombre del enlace (la imagen es "normal.gif") y el archivo descargado es "MichelBuffa.gif":*
+
+*WARNING: since 2015, and for security reasons, the image should be located on the same domain as the HTML page that contains the link (using a relative URL works well, for example, but linking a page on another domain will not work - it will keep its original name).*
+
+##El HTML5 TRANSLATE ATRIBUTO
+
+*INTRODUCCIÓN HTML5 nos da un nuevo atributo traducir. Este atributo se utiliza para limitar el impacto de las herramientas de traducción como Google Translate, al prohibir la traducción de determinados contenidos. En muchos casos, algunas partes de un documento no deben ser traducidos.*
+
+Los casos de uso son:
+
+*Páginas HTML que contienen el código fuente: que sin duda no le gustaría ver el Java o PHP o cualquier programación partes lingüísticas de su página traducida a otro idioma hablado!*
+
+*Los sitios web de videojuegos que proponen códigos de trucos; los códigos no tienen que ser traducidos,*
+
+*Nombres de calles, nombres de autores en un "sobre" la página no debe traducirse
+
+*Tanto Google translate y servicios de traducción en línea de Microsoft ya ofrecen la capacidad de prevenir la traducción de los contenidos mediante la adición de marcadores para tu sitio, aunque lo hacen de (múltiples) formas diferentes. Esperemos que el nuevo atributo ayudará significativamente al proporcionar un enfoque estándar.*
+
+##PRINCIPIO: DAR CONSEJOS PARA HERRAMIENTAS TRADUCCIÓN
+
+*nos dice que "El atributo traducir es un atributo enumerado que se utiliza para especificar si los valores de atributos de un elemento y los valores de sus hijos nodo de texto deben ser traducidos cuando se localiza a la página, o si dejarlos sin cambios.*
+
+*Palabras clave del atributo son la cadena vacía, sí, y no. La cadena vacía y la palabra clave mapa sí al estado sí. Los hay mapas de palabras clave a la no estatal. Además, hay un tercer Estado, el Estado hereda, que es el valor predeterminado de falta (y el valor predeterminado valor no válido) ".*
+
+Ejemplo ilustrativo cómo especificar partes de un elemento HTML que no debe ser traducido:
+
+	<span translate="no" class="author">Michel Ham</span>
+	
+*En el ejemplo anterior, un elemento <span> define un autor (de un blog, por ejemplo) que se llama Michel Ham. Sin embargo, su apellido es el mismo que el cerdo y se traduciría a "Michel Jambon" en francés, o Michel Jamón en español ...*
+
+*Utilizando el = "no" atributo traducir debería impedir este comportamiento ...*
+
+	<span translate="no" class="author">Michel Ham</span> is a professor
+		from the University of Nice,France.
+		
+##HERENCIA ENTRE ELEMENTOS
+
+*Al definir un elemento como no ser traducible, sus hijos heredan este comportamiento y son ellos mismos no traducible. Lo contrario también es cierto.*
+
+	<p translate="no">This is a text in a paragraph element, that should not be translated: the p element has a 			translate="no" attribute.<span> This part that is in a span element embedded within the paragraph. It does not have a 	translate attribute but inherits the translation-mode of the p and will not be translated too</span>. This is the end of the 	paragraph...</ p>
+	
+##Microdata
+
+*INTRODUCCIÓN
+
+*Existen 3 formas de proporcionar contenido legible por máquina incrustado en un documento Web clásica: HTML + RDFa, microformatos y microdatos. En esta sección, nos centraremos en los microdatos.*
+
+*Adición de microdatos a páginas Web ayuda a los motores de búsqueda a comprender mejor el contenido de las páginas, sus temas, etc. El objetivo principal de los microdatos es la optimización del Search Engine.*
+
+*Esta información no es visible para los humanos: es la información semántica pura. Tipos populares de microdatos son eventos, el perfil de una persona, la descripción de una organización, los detalles de una receta, una descripción del producto, una ubicación geográfica, etc.*
+
+##QUICK EXAMPLE OF MICRODATA THAT DESCRIBES A PERSON:
+
+	<section itemscope itemtype="http://schema.org/Person">
+    	<h1>Contact Information</h1>
+    	<dl>
+      		<dt>Name</dt>
+      		<dd itemprop="name">Michel Buffa</dd>
+      		<dt>Position</dt>
+      		<dd><span itemprop="jobTitle">
+           	Professor/Researcher/Scientist</span> for
+          	<span itemprop="affiliation">
+              University of Côte d'Azur, France
+          </span>
+      		</dd>
+    	</dl>
+    	<!-- SURFACE ADDRESS GOES HERE -->
+    	<h1>My different online public accounts</h1>
+    	<ul>
+       		<li><a href="http://www.twitter.com/micbuffa"
+              	itemprop="url">Twitter profile</a></li>
+       	<li><a href="http://www.blogger.com/micbuffa"
+              itemprop="url">Michel Buffa's blog</a></li>
+    	</ul>
+	</section>
+	
+*Ejemplo*
+	
+	...
+	</dl>
+		<!-- SURFACE ADDRESS GOES HERE -->
+		<dd itemprop="address" itemscope
+    			itemtype="http://schema.org/PostalAddress">
+    		<span itemprop="streetAddress">10 promenade des anglais</span><br>
+    		<span itemprop="addressLocality">Nice</span>,
+    		<span itemprop="addressRegion">Alpes maritimes, France</span>
+    		<span itemprop="postalCode">06410</span><br>
+    		<span itemprop="addressCountry" itemscope
+          		itemtype="http://schema.org/Country">
+         	<span itemprop="name">France</span>
+    		</span>
+	</dd>
+		<h1>My different online public accounts</h1>
+		...
+
+In the following sections, we will look more closely at the itemprop, itemscope and itemtype attributes.
+
+##DATOS  se pueden procesar, organizado, estructurar, o presentarse en un contexto dado
+
+*Los diferentes casos de uso:*
+
+*El navegador, o una extensión del navegador, pueden interpretar el último ejemplo como una dirección y pueden proponer a enviarlo a una aplicación de mapas,*
+
+*Un rastreador Web puede interpretar esto como una dirección y mostrarlo en sus respuestas utilizando un diseño de presentación dedicada,*
+
+*Algunos de código JavaScript en la página se puede acceder a estos datos,*
+
+*Con otros tipos de microdatos, para eventos, por ejemplo, el navegador puede aparecer una aplicación de calendario, etc.*
+
+*Nota: Para los usuarios avanzados, Microdatos es muy similar a los microformatos, que utilizan clases de HTML, o a RDFa, que no valida en HTML4 o HTML5. Debido a RDFa se consideró demasiado difícil para que los autores escriben (Google ha llevado a cabo una investigación que concluye que los autores hacen un 30% más errores con RDFa que con otros formatos), los microdatos es la respuesta de HTML5 a la necesidad de integrar la semántica en documentos html.*
+
+##Testing tools
+
+*GOOGLE RICH SNIPPETS AND STRUCTURED DATA TEST TOOL*
+
+One of the most popular resources for testing microdata (as well as microformats and RDFa) is the Google page about rich snippets and structured data. This page contains a link to a structured data testing tool that you can use to see how Google recognizes the semantic data you embed in your HTML code.
+
+Testing a real interactive example with an "about page" for Michel Buffa
+
+Let's have a look now at a (small) example of an about page. It renders as a very simple paragraph that explains who Michel Buffa is... But we embedded Microdata, so it's interesting to see how a search engine sees it, and how it may produce "augmented search results".
+
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset=utf-8 />
+	<title>Michel Buffa</title>
+	</head>
+	<body>
+ 		<div itemscope itemtype="http://schema.org/Person">
+    		My name is <span itemprop="name">Michel Buffa</span>,
+    		And I'm a <span itemprop="jobTitle">professor/researcher</span> at
+     		<a href="http://www.i3s.unice.fr/I3S/" itemprop="affiliation">I3S
+		Laboratory</a> in the south of France, near the city of Nice. My
+    				email
+    		is : <span itemprop="email">micbuffa@gmail.com</span>.
+		 I live in the city of
+    	<span itemprop="address" itemscope
+        itemtype="http://schema.org/PostalAddress">
+         <span itemprop="addressLocality">Biot</span>, in a region named
+         <span itemprop="addressRegion">Alpes Maritimes</span>
+    	</span>
+ 	</div>
+	</body>
+	</html>
+	
+*Implementing microdata in your page / the itemscope, itemtype and itemprop attributes*
+
+*BASIC STEPS*
+
+Adding microdata to an HTML page is a really simple task and requires only three attributes: itemscope, itemtype  and itemprop.
+
+
+Define a container element by adding an itemscope attribute
+
+*First, you need to add an itemscope attribute to an HTML element. This will define the "global object" for which we will define properties. This element can be of different types that we will describe later, but for now let us keep looking at the same example we used in previous sections:*
+
+	<section itemscope itemtype="http://schema.org/Person">
+		...
+	</section>
+	
+*We will look at the itemtype attribute later. Now that we have defined a global wrapper object/element (a Person in this case), we can  add properties inside this element to define the first name, last name, etc.*
+
+2 - Specify the vocabulary used for your microdata with the itemtype attribute of the container element
+
+*HTML5 proposes semantic elements for representing sections, articles, headers, etc, but it does not propose any specific elements or attributes to describe an address, a product, a person, etc.*
+
+*We need a special vocabulary to represent a person or a physical address. With microdata you can define your own vocabulary or better, reuse one of the existing popular vocabularies, such as these: http://www.schema.org.*
+
+*Microdata works with properties defined as name/value pairs. The names are defined in the corresponding vocabulary. For example, the vocabulary for representing a Person, available at http://schema.org/Person defines a set of property names, as illustrated by the following screenshot:*
+
+As you can see in this small extract from the vocabulary (also called a "schema"), a Person can have a name (some text), an Address (the type is defined by another vocabulary named PostalAddress), an affiliation (defined by another vocabulary named Organization) and so on.
+
+We notice that one property, such as the address of a Person, may use another vocabulary. Yes, a vocabulary may link to another vocabulary! There is also inheritance between vocabularies! The above screenshot shows that the Person vocabulary inherits from a Thing vocabulary, and the five first properties of the table come from this vocabulary that describes things.
+
+If you are a developer and if you are familiar with object oriented programming, think of properties as class attributes and think of vocabularies as classes.
+
+Vocabularies are meant to be shared
+
+Picture wish words 'time to share'
+
+If one of the existing vocabularies available at the schema.org Web site fits your needs, you should reuse it, as the most popular vocabularies are becoming de facto standards and will be taken into account by Web crawlers, browsers, and browser extensions.
+
+However, if you do not find a vocabulary corresponding to your needs, keep in mind that anyone can define a microdata vocabulary and start embedding custom properties in their own Web pages. You need to define a namespace and put a description of your vocabulary in a Web page that has the name of your vocabulary. For example, if you own japaneserobots.com, you may define a vocabulary for describing Mech Warrior robots at http://japaneserobots/MechWarrior in the same way as http://schema.org/Person describes the properties of a person.
+
+3 - Add properties using the itemprop attribute in HTML elements inside the container 
+
+Basics:
+
+Now that you have defined a container element, you may add properties to the HTML inside
+
+	<section itemscope itemtype="http://schema.org/Person">
+     	<h1>Contact Information</h1>
+     	<dl>
+         	<dt>Name</dt>
+         	<dd itemprop="name">Michel Buffa</dd>
+         	<dt>Position</dt>
+         	<dd><span itemprop="jobTitle">
+                     	Professor/Researcher/Scientist
+             	     </span> for
+             		<span itemprop="affiliation">University of Nice,
+                    		France
+             	</span>
+          	</dd>
+     		</dl>
+     		<h1>My different online public accounts</h1>
+     	<ul>
+         	<li><a href="http://www.twitter.com/micbuffa"
+             		itemprop="url">Twitter profile</a></li>
+         	<li><a href="http://www.blogger.com/micbuffa"
+             		itemprop="url">Michel Buffa's blog</a></li>
+     	</ul>
+	</section>
+
+*In this example the container is a <section> that corresponds to a Person (we have one clue here: the name of the vocabulary given by the itemtype attribute), and each property defined inside this section is identified by the value of the itemprop attribute of sub-elements.*
+
+*The line: *
+
+	<dd itemprop="name">Michel Buffa</dd>
+	
+..defines a property called "name" that has a value of "Michel Buffa" (the text value between the opening and closing tags of the < dd > element)
+
+##Nesting microdata items:
+
+As we saw with the Person/Address example at the beginning of this chapter, it is possible to nest microdata items inside one another.
+
+Give an element inside a microdata container its own itemscope attribute with the recommended itemtype attribute for indicating the name of the vocabulary used by the nested microdata.
+
+Again, look at the Person/Address example:
+
+	...
+	</dl>
+		<!-- SURFACE ADDRESS GOES HERE -->
+		<dd itemprop="address" itemscope
+    			itemtype="http://schema.org/PostalAddress">
+     		<span itemprop="streetAddress">10 promenade des anglais</span><br>
+     		<span itemprop="addressLocality">Nice</span>,
+     		<span itemprop="addressRegion">Alpes maritimes, France</span>
+     		<span itemprop="postalCode">06410</span><br>
+     		<span itemprop="addressCountry" itemscope
+           		itemtype="http://schema.org/Country">
+          	<span itemprop="name">France</span>
+     		</span>
+		</dd>
+		<h1>My different online public accounts</h1>
+	...
+	
+The properties at lines 8-12 refer to the address nested microdata (they are defined in the Address vocabulary, not the Person vocabulary), and "France" (line 14) is a property that refers to the Country vocabulary.
+
+Several properties with the same name but different values
+
+It is possible to use the same property name several times in one microdata object, but with different values:
+
+	...
+ 	<h1>My different online public accounts</h1>
+ 	<ul>
+ 		<li><a href="http://www.twitter.com/micbuffa" itemprop="url">Twitter
+      			profile</a></li>
+ 		<li><a href="http://www.blogger.com/micbuffa" itemprop="url">Michel
+      			Buffa's blog</a></li>
+	</ul>
+	
+This will define the fact that Michel Buffa has two online accounts, and the two properties have the name url, each with its own value.
+
+It is possible to set more than one property at once, with the same value
+
+It is possible to set more than one property at once, with the same value
+
+Here are some microdata that represent a song. In this example, at line 5 we set  two different properties: genre and keywords with the same value (see the MusicRecording schema definition at http://schema.org/MusicRecording):
+
+	<div itemscope itemtype="http://schema.org/MusicRecording">
+ 	<h2>The song I just published</h2>
+ 	<ul>
+ 		<li>Name: <span itemprop="name">Please buy me on itunes, I need money!</span></li>
+ 		<li>Band: <span itemprop="genre keywords">Punk, Ska</span></li>
+ 	</ul>
+	</div>
+	
+And so on...
+
+Now let's see what elements are compatible with the itemprop attribute and where the values of the properties are located, depending on each element type.
+
+##Microdata Tools
+
+There are many tools available (most are free) that you can use for generating, visualizing and debugging microdata. We list some of them in this page, but feel free to share the tools you find / like in the forums.
+
+MICRODATA GENERATORS
+
+There are many free tools you can use to automatically generate microdata for describing persons, restaurants, movies, products, organizations, etc. such as:
+
+http://www.barryko.com/seo/html5-microdata-schema-generator/ 
+http://www.microdatagenerator.com/
+http://schema-creator.org
+Search for "microdata generators" using your favorite search engine, and you will find lots!
