@@ -241,8 +241,166 @@ Utilice múltiples titulos de distinto rangos, con el seleccionador de contenido
  	</section>
 	</body>
 
+Las mejores prácticas al utilizar elementos de seccionamiento
+
+MEJOR PRÁCTICA 1: SIEMPRE AÑADIR UN TITULO AL CONTENIDO EXPLÍCITO DE SELECIONAMIENTO
+
+*Siempre es mejor - sobre todo por razones de accesibilidad - para incluir un encabezado (a < h1 >, < h2 > ... < h6 >) en cada elemento de seccionamiento (< section >, < article >, < nav >, < aside >) , sino también después de que el elemento < body > (llamado "root seccionar").*
+
+*EJEMPLOS*
+
+	<section>
+    		<h1>Blog post of April 2015</h1>
+    		...
+	</section>
+	
+*o*
+
+	<section>
+   	<header>
+      		<h1>Blog post of April 2015</h1>
+      		<p>Posted by Michel Buffa...</p>
+   	</header>
+	...
+	</section>
+	
+*Esto esta mal*
+
+	<section>
+   	<header>
+      		<p class="article title">Blog post of April 2015</p>
+      		<p>Posted by Michel Buffa...</p>
+   	</header>
+   	...
+	</section>
+	
+*Tenga en cuenta que <body> es también un elemento de seccionamiento. Se llama una "raíz de seccionamiento", y que también es necesario un título.*
+
+	<body>
+    		<h1>Example Blog</h1>
+    	<section>
+       	<header>
+          <h2>Blog post of April 2015</h2>
+          <p>Posted by Michel Buffa...</p>
+       	</header>
+      		<p>Content of the blog post...</p>
+   	</section>
+ 	</body>
+
+*Para resumir:*
+
+*Utilice siempre un elemento de encabezado después de un elemento de selecionamiento, por ejemplo < section > < Hx > ... </ Hx > ... </ section >, y después de < body >, donde x puede ser 1..6,*
+
+*O bien, utilizar un <header> elemento, como en < section > < header > < Hx > ... </ Hx > ..... </ header > ... </ section >*
+
+##Un poco mas sobre header elemento
+
+*El < header > elemento es sólo un contenedor. No se tiene en cuenta para la definición de nuevas secciones de un documento ni afecta los niveles de jerarquía.*
+
+*Puede usar elementos de encabezado < h1 > ... < h6 > en un < header >, pero tenga cuidado si utiliza más de una, como las reglas explicadas en la parte anterior del curso será de aplicación y puede generar "secciones" implícitos en la cabecera.*
+
+	<section>
+   	<header>
+     		<h1>Some text in a h1 in a header of a section</h1>
+     		<h2>This a h2 in the header...</h2>
+   	</header>
+	</section>
+
+*o*
+
+	<header>
+    		<h1>HTML 5.1 Nightly</h1>
+    		<p>A vocabulary and associated APIs for HTML and XHTML</p>
+    		<p>Editor's Draft 9 May 2013</p>
+	</header>
+	
+BEST PRACTICE 2: TRY NOT TO RELY ON IMPLICIT SECTIONING, USE <SECTION>, <ARTICLE>, ETC. INSTEAD OF JUST < H1 >...< H6 >
+
+*El siguiente ejemplo define varias "secciones" implícitos utilizando < Hx > directamente (en las líneas 7 y 9):*
+
+	<body>
+ 	<h4>Apples</h4>
+ 	<p>Apples are fruit.</p>
+ 	<section>
+     		<h2>Taste</h2>
+     		<p>They taste lovely.</p>
+     		<h6>Sweet</h6>
+     		<p>Red apples are sweeter than green ones.</p>
+     		<h1>Color</h1>
+     		<p>Apples come in various colors.</p>
+ 	</section>
+	</body>
+
+*Mejor tecnica*
+
+	<body>
+ 	<h1>Apples</h1>
+ 	<p>Apples are fruit.</p>
+ 	<section>
+     		<h2>Taste</h2>
+     		<p>They taste lovely.</p>
+     	<section>
+         	<h3>Sweet</h3>
+         	<p>Red apples are sweeter than green ones.</p>
+     	</section>
+ 	</section>
+ 	<section>
+     		<h2>Color</h2>
+     		<p>Apples come in various colors.</p>
+ 	</section>
+	</body>
+	
+*mejor para mantener*
+
+	<body>
+ 	<h1>Apples</h1>
+ 	<p>Apples are fruit.</p>
+ 	<section>
+     		<h1>Taste</h1>
+     		<p>They taste lovely.</p>
+     	<section>
+         	<h1>Sweet</h1>
+         	<p>Red apples are sweeter than green ones.</p>
+     	</section>
+ 	</section>
+ 	<section>
+     		<h1>Color</h1>
+     		<p>Apples come in various colors.</p>
+ 	</section>
+	</body>
+	
+*se necesitaria css para modificar el tamaño*
 
 
+##Incorporación de una tabla de contenidos
+
+
+*Aquí proponemos una pequeña pieza de código JavaScript que puede utilizar en sus documentos para mostrar una tabla incrustada de contenidos. Este código viene del código fuente de la del HTML5 Outliner (H5O) extensión de Google Chrome.*
+
+*Este ejemplo es un documento sencillo, con un hipervínculo que, una vez que se hace clic, se muestra la tabla de contenido en un <aside> en el <section> principal. Basta con mirar el código fuente y copiar / pegar el enlace en sus propios documentos HTML.*
+
+	<body>
+	<h1>This is an example of embedded table of content</h1>
+ 	<section>
+     	     <header>
+         	<h1>First section of the document (this is a h1)</h1>
+         	This is a subheading...
+     	      </header>
+     		 <h2>First subsection of the first section (a h2)</h2>
+     		 <p>Blah Blah...</p>
+ 	</section>
+ 	<section>
+     		<h1>Second section of the document (a h1)</h1>
+     		<h2>First subsection (a h2)</h2>
+ 	</section>
+ 	<aside>
+     		<h3>Table of contents</h3>
+     		<a href="javascript:(function(){...})();"
+        		title="TableDeMatiere">
+        	Click here to display the table of contents!
+     		</a>
+ 	</aside>
+	</body>
 
 
 
