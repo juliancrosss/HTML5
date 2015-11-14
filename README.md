@@ -556,3 +556,104 @@ http://www.w3.org/html/wg/wiki/User:Sfaulkne/main-usecases#Introduction
 
 *Ejemplo*
 
+	<header>
+ 		<code>&lt;header&gt;</code>
+	</header>
+ 
+	<section>
+ 		<code>&lt;section&gt; <br> float: left;</code>
+	</section>
+ 
+	<section>
+ 		<code>&lt;section&gt; <br> float: left;</code>
+	</section>
+ 
+	<section>
+ 		<code>&lt;section&gt; <br> float: left;</code>
+	</section>
+ 
+	<footer>
+ 		<code>&lt;footer&gt;</code>
+	</footer>
+
+*con css*
+
+	code {
+  		background: blue;
+  		border-radius: 6px;
+  		color: #fff;
+  		display: block;
+  		font: 14px/24px "Source Code Pro", Inconsolata, "Lucida Console", Terminal, "Courier New", Courier;
+  		padding: 24px 15px;
+  		text-align: center;
+	}
+	header,
+	section,
+	aside,
+	footer {
+  		margin: 0 1.5% 24px 1.5%;
+	}
+	section {
+ 		float: left;
+  		width: 30%;
+	}
+	footer {
+  		clear: both;
+  		margin-bottom: 0;
+	}
+	
+##Ejemplo 3: mismo resultado usando la propiedad CSS FLEX
+
+*En este ejemplo se utiliza la propiedad de la flex CSS para lograr un resultado similar al que se muestra en el Ejemplo 2*
+
+Ejemplo 4: OTRO EJEMPLO escrito por un estudiante (ROYREY), que utiliza el FLEX PROPIEDAD
+
+
+##< details > y < summary > elementos
+
+*INTRODUCCIÓN Estos elementos se han introducido para la visualización de una zona plegable en un documento HTML.*
+
+*El < details > elemento genera un widget simple de mostrar contenido del elemento / ocultar, opcionalmente pulsando sobre su hijo < summary > elemento.*
+
+	<!DOCTYPE html>
+	<html>
+	<body>
+
+	<details>
+		<summary>How to beat the boss...spoiler alert !</summary>
+		<p> Just aim to the red spots near his eyes</p>
+		<p>Keep shooting at these spots until the eyes open, then hit quickly both eyes with your laser beam.</p>
+	</details>
+
+	</body>
+	</html>
+	
+	details {
+		display:block; 
+		width:300px;
+		margin:10px 0;
+	}
+	summary {
+		display:block; 
+		background:#99B92C;
+		color:white;
+		border-radius:5px;
+		padding:5px;
+		cursor:pointer;font-weight:bold;
+	}
+	
+*El < summary > ... </ summary > está dentro de un < details > ... </ detailsdetails > elemento. Al hacer clic en el icono a la izquierda del resumen, el contenido de la <details> valor se muestra / oculta.*
+
+*< details > bloques pueden ser incrustados dentro de otros*
+
+	<details>
+		<summary>How to beat the boss...spoiler alert !</summary>
+		<p> Just aim to the red spots near his eyes</p>
+		<p>Keep shooting at these spots until the eyes open, then hit quickly both eyes with your laser beam.</p>
+  		<details>
+    			<summary>Bonus and spoiler No 2: get a new weapon by cutting the tail of the boss</summary>
+			<p>Before finishing him, try to cut his trail, you will get a new weapon</p>
+			<p>Just try to stay behind him as long as you can, hitting his tail with your melee weapon, after a few 			hits the trail will fall and you will get a new bonus weapon, then finish the boss.</p>
+		</details>
+	</details>
+
