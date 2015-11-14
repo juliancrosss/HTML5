@@ -657,3 +657,79 @@ Ejemplo 4: OTRO EJEMPLO escrito por un estudiante (ROYREY), que utiliza el FLEX 
 		</details>
 	</details>
 
+##CLASES DE PSEUDO CSS DE ICONOS STYLING RESUMEN
+
+*Hay clases seudo CSS para el estilo de este icono cuando está en el estado abierto o cerrado. El apoyo a estos todavía no oficial (funciona en Google Chrome).*
+
+*El color y el fondo del icono de la izquierda se especifican por la siguiente regla CSS, que utiliza la clase de pseudo*
+
+	::-webkit-details-marker
+	
+	summary::-webkit-details-marker {
+    		color:#FF0000;
+    		background:#FFFFFF;
+	}
+
+*Cuando se despliegue*
+
+	details[open] summary::-webkit-details-marker {
+    		color:#0000FF;
+    		background:#00FFFF;
+	}
+	
+*También es posible cambiar el icono de sí mismo utilizando la clase de pseudo CSS:after*
+
+*Use un icono con forma de "+", rosa, negrita, etc ...:*
+
+	summary:after {
+    		content: "+";
+    		color: #FF00FF;
+    		float: left;
+    		font-size: 1.5em;
+    		font-weight: bold;
+    		margin: -5px 5px 0 0;
+    		padding: 0;
+    		text-align: center;
+    		width: 20px;
+	}
+	
+*Use un icono "-" en forma, blanco, cuando se muestran los detalles:*
+
+	details[open] summary:after {
+    		content: "-";
+    		color: #FFFFFF
+	}
+	
+##Cómo agregar retro-compatibilidad: un ejemplo
+
+*INTRODUCCIÓN Un polyfill es una pieza de código JavaScript que incluye en su página HTML, que emulará HTML5 características no implementado aún en los navegadores. Por lo general, un polyfill comienza emulando una característica sólo cuando no se detecta el soporte nativo.*
+
+*¿Sabes dónde está el término "polyfill" está viniendo? Fue acuñado por Remy Sharp, un programador Web británico que había estado usando una marca de resina para llenar agujeros en la mampostería.*
+
+*You will find a list of polyfills on these Web sites: http://caniuse.com/ or http://html5please.com/. Or just do a search using the keyword 'polyfill' with the name of the feature.*
+
+*Algunas bibliotecas, como http://modernizr.com/, son útiles para la detección de las funciones compatibles con un navegador determinado. Se viene embalado con algunos polyfills de propósito general (como HTML5 cuña para el viejo IE) y la página wiki de su repositorio GitHub viene con una enorme lista de polyfills disponibles que se pueden cargar en la demanda sólo cuando el navegador no está apoyando una característica nativa .*
+
+
+*EJEMPLO CON < details > Y < summary >*
+
+*< details > y < summary > todavía no están soportadas por todos los navegadores. ¿Cómo podemos utilizar en un sitio web? La respuesta es: utilizar un polyfill!*
+
+Version 1: no polyfill
+
+
+##< time > elemento
+
+*INTRODUCCIÓN El < time > es útil para marcar una hora o una duración en un documento.*
+
+*Ofrece tanto una parte legible (la parte entre  < time > y </ time >) y una parte legible por máquina contenidos dentro de un atributo datetime. Las fechas se expresan como YYYY-MM-DD.*
+
+*La parte legible por máquina añade semántica que pueden ser utilizados por los motores de búsqueda para la indexación, los navegadores o las extensiones del navegador o por el código JavaScript.Escenarios útiles incluyen la generación de alertas para cumpleaños, añadiendo automáticamente fechas o eventos que contienen < time > elementos en un calendario, etc.*
+
+*ejemplo*
+
+	We open at <time>10:00</time> every morning.
+	I have a meeting the <time datetime="2012-02-14">Monday 14/02/2012.</time>.
+	Blog posts from the year <time datetime="2012">2012</time>.
+	Archives, blog posts for <time datetime="2012-04">April 2012</time>
+	This recipe was published by Michel the <time datetime="2012-04-16">April 16, 2012</time>.
