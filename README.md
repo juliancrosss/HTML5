@@ -642,9 +642,9 @@ Ejemplo 4: OTRO EJEMPLO escrito por un estudiante (ROYREY), que utiliza el FLEX 
 		cursor:pointer;font-weight:bold;
 	}
 	
-*El < summary > ... </ summary > está dentro de un < details > ... </ detailsdetails > elemento. Al hacer clic en el icono a la izquierda del resumen, el contenido de la <details> valor se muestra / oculta.*
+*El < summary > ... </ summary > está dentro de un < details > ... </ details > elemento. Al hacer clic en el icono a la izquierda del resumen, el contenido de la <details> valor se muestra / oculta.*
 
-*< details > bloques pueden ser incrustados dentro de otros*
+*< details  > bloques pueden ser incrustados dentro de otros*
 
 	<details>
 		<summary>How to beat the boss...spoiler alert !</summary>
@@ -733,3 +733,43 @@ Version 1: no polyfill
 	Blog posts from the year <time datetime="2012">2012</time>.
 	Archives, blog posts for <time datetime="2012-04">April 2012</time>
 	This recipe was published by Michel the <time datetime="2012-04-16">April 16, 2012</time>.
+	
+##EL ATRIBUTO DATETIME
+
+*El atributo de fecha y hora "datetime" puede utilizarse para indicar una fecha / hora o una duración.*
+*Fecha valores / hora Soporta diferentes especificaciones de tiempo como "un año", "un mes en un año", "una semana en un año", "un tiempo", etc ...*
+
+*Ejemplos*
+
+	<time datetime="1905">	The year 1905
+	<time datetime="1905-11">	November 1905
+	<time datetime="11-13"> 	November 13th (any year)
+	<time datetime="1905-W21">	Week 21 from year 1905
+	<time datetime="1905-11-13 09:00">	November 13th year 1905, time = 9:00
+	<time datetime="1905-11-13T09:00">	Same as previous example, both syntaxes are supported, with and without the "T" 						between date and time.
+	<time datetime="09:00Z">	9:00 in the morning, GMT
+	<time datetime="09:00-05">	9:00 in the morning, GMT minus 5 hours
+	<time datetime="09:00+05:45">	9:00 in the morning, GMT plus 5 hours 45 minutes, (for example, Nepal is 5:45 ahead of  					GMT)
+	
+*valores de duración*
+
+*Valores de duración utilizan el prefijo "P" para "período", como en < time datetime = "P4D" > (periodo = cuatro días) ...*
+
+*So you start the attribute string value with a "P", followed by a duration value that ends with another letter indicating the unit used: "D" for "days",  “H” for hours, “M” for minutes and “S” for seconds.*
+
+*Puede separar los diferentes elementos "P", de valor y unidad con espacios, pero esto es opcional. Así <hora datetime = "P4D"> es una duración de 4 días, como es < time datetime = "P 4 D">.*
+
+*El uso de una "T" después de que el marcador "P" le permite indicar una más precisa tiempo de duración: <hora datetime = "PT4H 6M 12.55S"> es una duración de 4 horas, 6 minutos y 12.55 segundos.*
+
+*Como alternativa, puede usar también un componente de tiempo de duración. Desde el artículo de Bruce Lawson: "Cualquiera que elija, está representado internamente como un número de segundos Debido a esto, no se puede especificar una duración en términos de meses, ya que un mes no es un número exacto de segundos, un mes puede. . duran de 28 a 31 días la misma manera, un año no es un número exacto de segundos, es de 12 meses y febrero veces tiene un día extra.*
+
+	<h2>Recipe:</h2>
+	<ul>
+  		<li> Preparation time: <time datetime="P30M">30 minutes</time> </li>
+  		<li> Cooking time:     <time datetime="P10M"> 10 minutes</time> </li>
+	</ul>
+	
+##< time > ELEMENTO SIN ATRIBUTOS
+
+*Si se utiliza sin atributos, el valor entre la apertura < time > y cierre </ time > debe seguir la sintaxis propuesta por el pliego de condiciones para que las máquinas puede entenderlo (misma sintaxis que el presentado para el atributo datetime en la sección anterior). Sin embargo, se recomienda utilizar un atributo de fecha y hora, ya que da más libertad en la forma en que puede mostrar la fecha / hora / duración en un formato legible.*
+	
