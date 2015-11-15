@@ -642,7 +642,8 @@ Ejemplo 4: OTRO EJEMPLO escrito por un estudiante (ROYREY), que utiliza el FLEX 
 		cursor:pointer;font-weight:bold;
 	}
 	
-*El < summary > ... </ summary > está dentro de un < details > ... </ details > elemento. Al hacer clic en el icono a la izquierda del resumen, el contenido de la <details> valor se muestra / oculta.*
+	
+*El < summary > ... </ summary > está dentro de un < details > ... </ details > elemento. Al hacer clic en el icono a la izquierda del resumen, el contenido de la < details > valor se muestra / oculta.*
 
 *< details  > bloques pueden ser incrustados dentro de otros*
 
