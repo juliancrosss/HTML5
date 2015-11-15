@@ -1376,3 +1376,135 @@ This example uses the pseudo CSS class :hover in order to track the mouseover ev
 	}
 	
 *FullScreen video that resizes and maintains ratios. Uses simple JavaScript to modify CSS properties*
+
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+    		<meta charset="utf-8">
+    		<title>Full width video like PayPal site</title>
+	</head>
+	<body onload="init();">
+    	<video id="myVideo" autoplay>
+      		<source src=http://html5doctor.com/demos/video-canvas-magic/video.webm type=video/webm>
+      		<source src=http://html5doctor.com/demos/video-canvas-magic/video.ogg type=video/ogg>
+      		<source src=http://html5doctor.com/demos/video-canvas-magic/video.mp4 type=video/mp4>
+    	</video>
+	</body>
+
+*css*
+
+	body {
+    		margin:0;
+    		padding:0;
+    		overflow:hidden;
+	}
+	
+*javascript*
+
+	var video;
+ 
+	function init() {
+   		// function called when the page is loaded
+   		video = document.querySelector("#myVideo");
+   		// For initial value
+   		video.width = window.innerWidth;
+   		video.height = window.innerHeight;
+   		// For dealing with window resize
+   		window.onresize = function() {
+       		video.width = window.innerWidth;
+       		video.height = window.innerHeight;
+   		};
+	}
+	
+Full screen video, pure CSS approaches (external resources)
+
+Here is a JSBin with the video from the PayPal Web site, played full screen using only very simple CSS.
+
+In this example, the video does not rescale; it's just cropped if the browser window is resized. Enlarge your browser and you'll see a man with a phone on the right. Resize your browser and you'll see only part of the video.
+
+	body {
+  		margin:0;
+  		padding:0;
+  		overflow:hidden;
+	}
+ 
+	video {
+  		width:100%;
+  		height:auto;
+	}
+	
+Full screen video with CSS effects - example 2
+
+This time the video is zoomed in so that it's much bigger than the browser's window. When we resize the browser, the part of the video that is visible adapts itself. It's not "real resize" of the video.
+
+	<!DOCTYPE html>
+	<html>
+	<head>
+   		<meta charset="utf-8">
+   		<title>Full screen video, example from demosthene.info by </title>
+	</head>
+	<body>
+	<header>
+ 	<video autoplay="" loop="" poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/polina.jpg" id="bgvid">
+    		<source src="http://demosthenes.info/assets/videos/polina.webm" type="video/webm">
+    		<source src="http://demosthenes.info/assets/videos/polina.mp4"  type="video/mp4">
+ 	</video>
+	</header>
+	<section>
+ 	<h1>http://demosthenes.info/blog/777/Create-Fullscreen-HTML5-Page-Background-Video</h1>
+	</section>
+	</body>
+	</html>
+	
+*css*
+
+	html, body{
+    		color:white;
+    		height: 100%;
+	}
+	header{
+    		height: 100%;
+    		background-image: url('http://dupontcours.free.fr/IMG/dots.png'), url('#');
+    		background-repeat: repeat, no-repeat;
+    		background-size: auto, cover;
+    		background-position: center center, top left;
+    		font-family: sans-serif;
+    		color: #051a00;
+	}
+ 
+	header video {
+    		position:fixed;
+    		top:50%;
+    		left:50%;
+    		min-width:100%;
+    		min-height:100%;
+    		width:auto;
+    		height:auto;
+    		z-index:-100;
+    		transform:translateX(-50%) translateY(-50%);
+	}
+	
+The trick here is that:
+
+the video is in the header, and the header has a plotted transparent background that is repeated in X and Y (see line 8 and 9).
+The video is positioned so that it's origin (top left corner) is away from the visible surface (line 25), while it is set to take 100% of the surface (lines 20 and 21).
+Full screen video that resizes and keeps its ratio, using the viewport units (beware, not supported by old browsers)
+
+##Control < audio > and < video > elements from JavaScript
+
+The <video> element has methods, properties/attributes and events that can be manipulated with JavaScript. Using the DOM API it's possible to manipulate an audio or video element as a JavaScript object that has:
+
+Methods for controlling the behavior, such as play(), pause(), etc.;
+
+Properties (duration, current position, etc.), either in read/write mode (such as volume), or in read-only mode (such as encoding, duration, etc.);
+
+Events generated during the life cycle of the element that can be processed using JavaScript callbacks. It is also possible to send events to control the video player.
+
+Like any HTML element, the <video> element can be manipulated/created using the DOM JavaScript API. Here is an example of programmatically creating a < video > element:
+
+	var video = document.createElement('video');
+	video.src = 'video.mp4';
+	video.controls = true;
+	document.body.appendChild(video);
+	
+*This will create a complete video player for the file "video.mp4", with control buttons, and will add it to the <body> element of the page.*
