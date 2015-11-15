@@ -1518,3 +1518,301 @@ The JavaScript API gives you powerful tools to manipulate the <video> element, a
 The complete list of events can be found at the W3C specification page, and numerous examples of each event can be found on many Web sites such as this one.
 
 The complete list of properties can be found at the W3C HTML5 Video Events and API page. This page is interesting for Web developers because it shows an interactive view of the different values and events changing over time while the video is playing within the page.
+
+#HTML5 Graphics
+
+About JavaScript and HTML5
+
+HTML5 is composed of new elements, but it also comes with many JavaScript APIs for controlling video and sound, drawing and animating things in the new < canvas > element, for offline applications, persistence, geolocation, orientation, etc.
+
+WHAT DO YOU NEED? HOW TO DEBUG? HOW TO CATCH ERRORS?
+
+We will not look at the JavaScript syntax here, but more at "JavaScript in the browser", how it works, how to start writing code, etc.
+
+First of all, you need to find a way to debug your code and see errors. If your work does not produce any results, you must know why!
+
+For that you will use the dev. tools of your browser. Press F12 in Windows or cmd-alt-i in Mac to open the dev. tools, then go to the console tab: this is where errors will be displayed, or messages of your own (use the console.log(string) JavaScript function in the JavaScript code embedded in your html page). In the console, you will be able to type any JavaScript command.
+
+The simplest way to add JavaScript code in an HTML page, is by using the < script >...</ script > element.
+
+The code in this example is executed sequentially when the page is loaded: the JavaScript code is executed before the browser could see the rest of the page (as the < script ></ script > is located before the <body>).
+
+The H1 element, for example, does not exist in the Document Object Model, and has not yet been displayed when the JavaScript code is executed. If we move the <script></script> at the end of the document, then the H1 would have been built before the JavaScript code is executed.
+
+The only line of code we have is console.log("Some JavaScript code has been executed");
+
+This means "display in the JavaScript console the message...". If we open the console tab provided by jsbin.com in a dedicated tab (that redirects all console.log() messages), and re-execute the page (just type a space at the end of a line, this will re-render the page and display the message in the console), we see the message in the console tab, as well as in the dev. tools console. This is illustrated by the image below:
+
+It is also possible to use the "real dev. tool console", and for this I recommend running the application in a single window, not in the JS Bin editor. Press the black arrow on the top right of the output window - this will render the page as a standalone Web page, then press F12. You should see:
+
+*ABOUT THE ASYNCHRONOUS NATURE OF JAVASCRIPT*
+
+Draw and animate graphics: the <canvas> element
+
+*The <canvas> tag is one of the "Flash killer" features of HTML5. This course will focus on the fundamental drawing capabilities of the HTML5 canvas.*
+
+*The W3C HTML5 specification about the <canvas> element states that "The canvas element provides scripts with a resolution-dependent bitmap canvas, which can be used for rendering graphs, game graphics, or other visual images on the fly."*
+
+The canvas has been designed for pixel-based graphics, while SVG (Scalable Vector Graphics, another W3C standard) is for vector-based graphics.
+
+*Indeed, the canvas JavaScript drawing API supports different kind of shapes: lines, rectangles, ellipses, arcs, curves, text, images. Some drawing styles need to be specified that will affect the way shapes are drawn (color, drawing width, shadows, etc.). An alpha channel for drawing in transparent mode is also supported, as well as many advanced drawing modes and global filters (blur, etc.).*
+
+The canvas is also used to do animations at 60 frames per second (useful for games), to display videos with special effects, to display a webcam stream, and so on.
+
+
+Note: 3D drawing using the WebGL API is also possible in a <canvas>, but will not be covered in this course. For the most curious among you, please have a look at the two popular libraries for doing 3D drawing/animation in a <canvas>: BabylonJS and ThreeJS.
+
+##How to make the HTML5 canvas accessible to users with disabilities?
+
+INTRODUCTION
+
+The dynamic nature of the <canvas> element has made it difficult to use in applications that need to be accessible to people with disabilities. To be accessible, it must meet the following principles:
+
+Providing alternative content for what is drawn on the < canvas >,
+Exposing the location of shapes, paths, images drawn on the < canvas > to assistive technologies,
+Visually indicating whether or not a shape in the canvas had keyboard focus.
+
+THE W3C CANVAS TASK FORCE
+
+The Canvas Task Force of the W3C's HTML Working Group is working on different features to be added to the HTML5.1 canvas specification in order to address canvas accessibility. This is only preliminary work and browsers implementations are not available yet.
+
+Read more on this topic: 
+
+What the canvas element means for accessibility is an article written by Mark Sadecki (ex-W3C, now working at edX).
+From the W3C wiki: Canvas Element Accessibility Issues
+
+##Canvas cheatsheet with all API methods and properties
+
+This is a valuable resource, which we recommend either printing or keeping open in a separate browser tab. The original version was located at "http://blog.nihilogic.dk/2009/02/html5-canvas-cheat-sheet.html", but this URL no longer works. Here, we share the mirrored versions (HTML and PDF ones).
+
+##The canvas coordinate system
+
+X AXIS IS HORIZONTAL, DIRECTED TO THE RIGHT
+Y AXIS IS VERTICAL, DIRECTED DOWNWARDS
+
+The coordinate system used for drawing in canvases is similar to the one used by many drawing APIs like Java2D: the (0 , 0) is in the top left corner while the X axis is going to the right and the Y axis to the bottom, as  shown in the following picture (author Mark Pilgrim):
+
+Small errata about what I said in the above video: "So let's get the canvas using the DOM API method document.getElementById() or better, use document.querySelector() that is a more recent method from the DOM API"..
+
+The part is bold is not correct: querySelector, technically, comes from Selectors API. Just in case some people would like to go to the specs...
+
+##Typical use of the <canvas> element
+
+1 - Add the < canvas > element into an HTML page
+
+	<canvas id="myCanvas" width="300" height="225">
+    		Fallback content that will be displayed in case the web browser
+    		does not support the canvas tag or in case scripting is disabled.
+	</canvas>
+	
+Place code similar to the above somewhere in an HTML page. This example defines an area of 300 by 225 pixels on which content can be rendered with JavaScript.
+
+Normally you should see nothing as a result; by default canvases are "transparent".
+
+Make it visible using CSS: A good practice when you are learning to use canvases is to use some CSS to visualize the shape of the canvas. This is not mandatory, just a good trick...
+
+The three lines of CSS will create a border around the canvas with id="myCanvas", of 1 pixel width, in black:
+
+CSS code:
+
+	<style>
+    	#myCanvas {
+        	border:1px solid black;
+    	}
+ 	</style>
+ 	
+ 2 - Select the < canvas > element for use from JavaScript
+ 
+ *We can have more than one <canvas> in a single page, and canvases will be manipulated with JavaScript like other elements in the DOM.*
+
+For example with:
+
+	var canvas = document.getElementById("myCanvas");
+	
+... or with the querySelector() method introduced by HTML5, that use the CSS selector syntax for selecting elements:
+
+3 - get a "2D context" associated with the canvas, useful for drawing and setting drawing properties (color, etc.)
+
+Once we have a pointer to the <canvas>, we can get a "context".
+
+This particular object is the core of the canvas JavaScript API.
+
+It provides methods for drawing, like fillRect(x, y, width, height) for example, that draws a filled rectangle, and properties for setting the color, shadows, gradients, etc.
+
+*Getting the context (do this only once):*
+
+	var ctx=canvas.getContext('2d');
+	
+*Set the color for drawing filled shapes*
+
+	ctx.fillStyle='red';
+	
+*Draw a filled rectangle:*
+
+	ctx.fillRect(0,0,80,100);
+
+
+Explanation
+
+Only access elements when the DOM is ready:
+
+Notice that we wrote an "init" function (line 12) that is called only when the page has been entirely loaded (we say "when the DOM is ready"). There are several ways to do this. In this example we used the <body onload="init();"> method, at line 32.
+
+It's good practice to have such a function, as we cannot access the elements of the page before the page has been loaded entirely and before the DOM is ready.
+
+Another way is to put the JavaScript code at the end of the document (between <script>...</script>), right before the </body>. In this case when the JavaScript code is executed, the DOM has already been constructed.
+
+Start by getting the canvas and the context:
+
+Before drawing or doing anything interesting with the canvas, we must first get its drawing "context". The drawing context defines the drawing methods and properties we can use.
+
+Good practice is to get the canvas, the context, the width and height of the canvas and other global objects in this "init" function.
+
+The example shows the use of the fillStyle property at line 27 - useful for specifying the way shapes will be filled. In our case this line indicates the color of all the filled shapes we are going to draw:
+
+	ctx.fillStyle='#FF0000';
+	
+The context property named fillStyle is used here. This property can be set with a color, a gradient, or a pattern. We will see examples of these later on in the course.
+
+When we set it with a color, we use the CSS3 syntax.
+
+The example says that all filled shapes will use the color "#FF0000", which corresponds to a pure red color using the CSS RGB hexadecimal encoding (we could also have used ctx.fillStyle='red');
+
+Then we can draw:
+
+	ctx.fillRect(0,0,80,100);
+	
+This line is a call to the method fillRect(top left X coordinate, top left Y coordinate, width, height), which draws a filled rectangle.
+
+This line is a call to the method fillRect(top left X coordinate, top left Y coordinate, width, height), which draws a filled rectangle.
+
+SUMMARY OF THE DIFFERENT STEPS
+
+Declare the canvas, remembering to add an id attribute, and fallback content:  
+
+	<canvas id="myCanvas" width="200" height="200">
+		...fallback content...
+	</canvas>
+
+ Get a reference to the canvas in a JavaScript variable using the DOM API: 
+ 
+	var canvas=document.getElementById('myCanvas');
+
+Get the context for drawing in that canvas:
+
+	var ctx=canvas.getContext('2d');
+	
+Specify some drawing properties (optional): 
+
+	ctx.fillStyle='#FF0000';
+	Draw some shapes: 
+	ctx.fillRect(0,0,80,100);
+	
+Drawing principles
+
+MORE ABOUT THE "CONTEXT" OBJECT
+
+Before we go on, we should take some time to clarify the way we draw on HTML5 canvases. We already mentioned that we use a graphic context for all the main operations. Whenever a shape, a text, or an image is drawn, the current values of the different properties of the graphic context are taken into account. Some are relevant only for certain kinds of shapes or drawing modes, but you must be aware that it is always the current values of these drawing properties that are used.
+
+Later on we'll see that there are ways to save and restore this whole set of values, but for now, let's examine in greater detail some of the properties and methods we've already encountered, and introduce new ones.
+
+
+MORE ABOUT PROPERTIES AND METHODS OF THE CONTEXT OBJECT
+
+fillStyle is a property of the context, similar in a way to a CSS property.
+
+Its value can be one of the following:
+
+a color,
+a pattern (texture), or
+a gradient.
+
+The default value is the color black. Any kind of drawing in "fill mode" will use the value of this property to determine how to render the "filled part" of the drawing: any filled rectangle will be filled black by default, any filled circle will be filled in black, and so on.
+
+As long as we don't modify the value of this property, all drawing commands for filled shapes will use the current value.
+
+Note that we will study in detail how to use colors, gradients and patterns later, but for now we introduce some properties and values so that you can understand the principles of canvas drawing.
+
+fillStyle and the other context properties can be considered to be "global variables" of the context.
+
+fillRect(x, y, width, height):  a call to this method draws a filled rectangle.
+
+The two first parameters are the coordinates of the top left corner of the rectangle. This method uses the current value of the filledStyle property to determine how to fill the rectangle.
+
+	ctx.fillStyle='pink';
+	ctx.fillRect(10,10,200,200);
+	
+##strokeStyle is a property of the context similar to fillStyle, but this time for indicating how the shape's outline should be rendered.
+
+The possible values are the same as those for the fillStyle property: a color, a pattern, or a gradient. This property will be taken into account when wireframe shapes are drawn.
+
+strokeRect(x, y, width, height): like fillRect(...), but instead of drawing a filled rectangle the rectangle is drawn in wireframe mode.
+
+	ctx.strokeStyle='blue';
+	ctx.strokeRect(10,10,200,200);
+	
+Only the outline of the rectangle will be drawn, and it will be drawn using the value of the strokeStyle property.
+
+##clearRect(x, y, width, height): a call to this method erases the specified rectangle.
+
+Actually it draws it in a color called "transparent black" (!) that corresponds to the initial state of the rectangle as if no drawing had occurred.
+
+##LET'S SEE SOME SIMPLE EXAMPLES...
+
+Draw a wireframe red rectangle, width lineWidth = 3 pixels.
+
+Extract from the source code (the part that draws the rectangle):
+
+	function drawSomething() {
+     		// draw a red rectangle, line width=3 pixels
+     		ctx.lineWidth=3;
+     		ctx.strokeStyle='red';
+     		ctx.strokeRect(10,10,80,100);
+ 	}
+ 	
+Here, we used "stroke" instead of "fill" in the property and method names (lines 4 and 5): strokeStyle instead of fillStyle, strokeRect(...) instead of fillRect(...).
+
+We also introduced a new property of the context, that applies only when drawing in "stroke" mode, the lineWidth property (line 3), that is used for setting the width of the shape outline. The value is in pixels.
+
+##DRAW 2 FILLED RED RECTANGLES WITH A BLUE OUTLINE OF 5 PIXELS AND SOME TEXT
+
+Let's continue with another example. This time we will draw several shapes that share the same colors - they will be filled in red, with a blue outline. We also show how to draw a text message with a given font.
+
+	 function drawSomething() {
+     		// set the global context values
+    		ctx.lineWidth=5;
+    		ctx.fillStyle='red';
+    		ctx.strokeStyle='blue'
+    		// font for all text drawing
+    		ctx.font = 'italic 20pt Calibri';
+    		// Draw the two filled red rectangles
+    		ctx.fillRect(10, 30, 70, 150);
+    		ctx.fillRect(110, 30, 70, 150);
+    		// Draw the two blue wireframe rectangles
+    		ctx.strokeRect(10, 30, 70, 150);
+    		ctx.strokeRect(110, 30, 70, 150);
+    		// Draw a message above the rectangles
+    		ctx.fillText("hello", 70, 22);
+ 	}
+ 	
+ This example shows the "global" nature of the context properties. Once you set the filled color to red, any shapes you draw in filled mode will be red. This is true for all the context properties. We set some of these properties in lines 3-7, and all following calls to context methods for drawing rectangles or text will depend on them. The two filled rectangles at lines 10-11 will be red, the two wireframe rectangles drawn at lines 14-15 will be blue, etc.
+
+Line 18 shows how to draw a text message at an X position of 70 and a Y position of 22. The font is set at line 7 using the font property of the context.  The syntax is the same we use in CSS for using "system fonts".
+
+If you would like to draw the filled text message in green, for example, you should set the ctx.fillStyle property to "green" after you draw the rectangles and before you draw the text (i.e just before line 18).
+
+SUMMARY OF WHAT WE LEARNED
+
+"stroke" means "wireframe" or "outlined", it is a prefix for setting properties or calling methods that will affect wireframe shapes, "fill" is a prefix for filled shapes.
+
+To set the properties of wireframe shapes use ctx.strokeStyle= ..., for filled shapes use ctx.fillStyle=... So far the values we have used are colors, expressed as strings. Example: ctx.strokeStyle  = 'blue';
+
+To draw a wireframe rectangle use ctx.strokeRect(x, y, width, height), to draw a filled rectangle use ctx.fillRect(x, y, width, height);
+
+To set the line width of wireframe shapes, use the ctx.lineWidth property. Example ctx.lineWidth = 10; ctx.strokeRect(0, 0, 100, 100);  will draw a 100x100 rectangle in wireframe mode, with an outline width of 10 pixels.
+
+To draw a text message use ctx.strokeText(message, x, y) or ctx.fillText(message, x, y), for wireframe text or filled text respectively.
+
+To set the character font use the ctx.font property; the value is a font in CSS syntax, for example:  ctx.font = 'italic 20pt Calibri'
+
+
