@@ -2007,3 +2007,11 @@ Source code extract of this function: notice at lines 3 and 26 how we save/resto
     		// BEST PRACTICE!
     		ctx.restore();
  	}
+
+
+
+#HTML5 FORMS
+
+With HTML5, forms, which had shown little improvement since 1997, evolved considerably.  To achieve this, web developers relied on many popular JavaScript frameworks for validating input formats, providing various input GUIs, such as calendars for dates, sliders, etc. Frameworks such as jQueryUI, Dojo, and Sencha all provide a widget set for improving forms. Furthermore, it was time to take into account the specifics of mobile web applications, where the GUI of a date chooser cannot be the same as a 400x400 pixel wide calendar on a desktop. Contextual virtual keyboards provided the way forward on smartphones and tablets thanks to Apple, Google and others.
+
+HTML5 took all this into account and now provides:
