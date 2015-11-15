@@ -1181,9 +1181,11 @@ An example using YouTube:
 
 *Aquí está el código HTML tiene que copiar y pegar con el fin de integrar un vídeo (en este caso, un tutorial que explica cómo incrustar un vídeo de YouTube):*
 
+
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/ZH1XOsv8Oyo" frameborder="0" 					allowfullscreen></iframe>
 	
-*El vídeo de YouTube embebido en esta página el código de seguridad: es HTML5, pero no es un elemento < video > directamente insertado en el HTML de esta página, es un <iframe>:*
+	
+*El vídeo de YouTube embebido en esta página el código de seguridad: es HTML5, pero no es un elemento < video > directamente insertado en el HTML de esta página, es un < iframe >:*
 
 ##CODEC SUPPORT
 
