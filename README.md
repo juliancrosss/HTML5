@@ -1508,3 +1508,13 @@ Like any HTML element, the <video> element can be manipulated/created using the 
 	document.body.appendChild(video);
 	
 *This will create a complete video player for the file "video.mp4", with control buttons, and will add it to the <body> element of the page.*
+
+##JavaScript API of the <audio> and <video> elements
+
+METHODS, PROPERTIES, AND EVENTS
+
+The JavaScript API gives you powerful tools to manipulate the <video> element, as the video object provides many properties, methods and events.
+
+The complete list of events can be found at the W3C specification page, and numerous examples of each event can be found on many Web sites such as this one.
+
+The complete list of properties can be found at the W3C HTML5 Video Events and API page. This page is interesting for Web developers because it shows an interactive view of the different values and events changing over time while the video is playing within the page.
