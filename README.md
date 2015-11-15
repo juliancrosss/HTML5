@@ -1139,3 +1139,237 @@ http://www.barryko.com/seo/html5-microdata-schema-generator/
 http://www.microdatagenerator.com/
 http://schema-creator.org
 Search for "microdata generators" using your favorite search engine, and you will find lots!
+
+#Resumen
+
+* Nuevos estructural elementos
+* otros elementos y atributos
+* microdata
+* 
+
+
+#HTML5 MULTIMEDIA
+
+##El elemento <video>
+
+*INTRODUCCIÓN El elemento < video > de HTML5 es una de las dos "asesinos Flash" (el otro es el elemento < canvas >). Fue diseñado para reemplazar las cosas horribles como objetos Flash incrustados que solíamos encontrar no hace mucho tiempo.*
+
+El código fuente de este ejemplo muestra el uso típico del elemento < video >:
+
+	<video width="320" height="240" controls="controls">
+   		<source src="movie.mp4" type="video/mp4" />
+   		<source src="movie.ogg" type="video/ogg" />
+   		Your browser does not support the <video> element.
+	</video>
+	
+Tenga en cuenta que:
+
+* el controls atributo indica que un panel de control con el play / stop / volume / progreso de widgets deben mostrarse;
+* Por lo general, el navegador usará el primer formato que reconoce (en este caso, el navegador comprueba si se admite mp4, y si no, se comprobará para el formato Ogg, y así sucesivamente). Algunos navegadores pueden usar una heurística diferente y elegir un formato de "preferido".
+* El elemento <video> es un miembro de DOM, por lo que el estilo CSS se puede aplicar, así como la manipulación mediante la API DOM.
+* 
+
+##RESTRICCIÓN: NO PUEDES incrustar un YOUTUBE O DAILYMOTION vídeo mediante el elemento < video >
+
+Help! <video src="my youtube video URL"></video> does not work! 
+
+*Mientras que utilizan HTML5 para hacer sus videos, estos sitios de alojamiento (YouTube, etc.) utilizan técnicas más complejas con el fin de evitar que utilice con el elemento < video >. En cambio, a menudo es necesario incrustar un < iframe > que hará que los videos HTML5 en su sitio Web, y por supuesto, la publicidad que viene junto con ellos.*
+
+*Por lo general, usted tiene un botón de "embed" cerca de los vídeos que le pide con algo de código HTML que puedes copiar y pegar para incrustar.*
+
+An example using YouTube:
+
+*Aquí está el código HTML tiene que copiar y pegar con el fin de integrar un vídeo (en este caso, un tutorial que explica cómo incrustar un vídeo de YouTube):*
+
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/ZH1XOsv8Oyo" frameborder="0" 					allowfullscreen></iframe>
+	
+*El vídeo de YouTube embebido en esta página el código de seguridad: es HTML5, pero no es un elemento < video > directamente insertado en el HTML de esta página, es un <iframe>:*
+
+##CODEC SUPPORT
+
+This is one of the main issues that the industry has had to solve during the last few years: codec support was not the same from one browser to another, for commercial/cost reasons. For example, Firefox only supported the ogg/oggm format from 2010 to 2013. It did not natively support mp3/mp4 encoding for audio/video, while Internet Explorer only supported the H.264 encoding. Since 2012, things have changed as browsers have been updated. In order to check codec support, the best way is to try it yourself: just visit Video Format Support from Microsoft IE (test works for all browsers).
+
+	The recommended codec that works on most browsers, as of 2015: 
+				H264/mp4
+				
+*However, the recommended way of doing things, assuming you want to target the largest possible audience with a large variety of browsers,  is to encode your videos in the major supported formats.*
+
+
+##El elemento < audio >
+
+INTRODUCCIÓN
+
+*HTML5 de audio se compone de varias capas:*
+
+El elemento < audio > es útil para incrustar un reproductor de audio en una página Web. Está dedicado para audio streaming. Es muy similar a la del elemento < video >, tanto en su uso y en su API.
+
+El "API Web Audio" está diseñado para aplicaciones musicales y para añadir efectos de sonido para juegos. Esta es API JavaScript y soporte la manipulación de muestras de sonido (bucles, etc.), la síntesis de la música y la generación de sonido (osciladores, etc.). También viene con un conjunto de módulos de sonido predefinido de procesamiento (reverberación, retardo, etc.).
+
+*Los atributos, conjunto de eventos y JavaScript API del elemento <audio> son sólo una versión "reducida" de los del elemento <video>, y aquí sólo se abordarán las diferencias y peculiaridades.*
+
+##THE <AUDIO> ELEMENT, BASIC USAGE
+
+	<html lang="en">
+	<body>
+  	<audio controls="controls">
+      		<source src="https://dl.dropboxusercontent.com/u/1631516/horse.ogg" type="audio/ogg" />
+      		<source src="https://dl.dropboxusercontent.com/u/1631516/horse.mp3" type="audio/mp3" />
+      			Your browser does not support the audio element.
+      			Download the audio/video in
+     		<a href=”https://dl.dropboxusercontent.com/u/1631516/horse.ogg”>OGG</a>
+     		or <a href=”https://dl.dropboxusercontent.com/u/1631516/horse.mp3”>MP3</a>
+     		format.
+ 	</audio>
+	</body>
+	</html>
+	
+*En este ejemplo, al igual que para el elemento <video>, usamos el atributo controls con el fin de hacer que la reproducción / stop , tiempo, volumen y progresar widgets.*
+
+*Note las otras similitudes: entre las etiquetas < audio > ... </  audio > etiquetas, hemos añadido un mensaje de texto que se muestra si el navegador Web no admite el elemento < audio > y utilizamos varios < source > .. . </  source > elementos que enlazan con diferentes formatos de audio para el mismo archivo. El navegador usará el primer formato que reconoce.*
+
+##Atributos del < video > y < audio > elementos
+
+	src
+	Source of the video.
+	
+	width and height	
+  	Size of the video.
+	If unspecified, the default width and height of the video will be used. If you specify one dimension but not the 		other, the browser will adjust the size of the unspecified dimension to preserve the aspect ratio of the video.
+	
+	controls	
+	If this boolean attribute is present, the browser displays its own controls for video playback and volume.
+	
+	poster	
+	This attribute allows you to specify an image that the browser will use while video is being downloaded, or until the 	user starts playing the video.If this attribute is not specified, the first frame of the video will be used instead.
+	
+	autoplay	
+	This attribute asks the browser to start playing the video automatically as soon as the page is ready
+	
+	preload	
+	The preload attribute is used when autoplay is not used. It tells the browser what to do before a user plays a video. 	This attribute is a hint - the browser may ignore it. While autoplay and preload are mutually exclusive, if both are 			present, then preload is ignored.
+
+	Possible values:
+	none: do nothing. This saves bandwidth, no video will be downloaded in background before a user or a call to the 		play() method starts playing the video.
+	metadata: download metadata, such as length of the video or its format.
+	auto (default value): the browser will decide. This will depend on the implementation, and on the kind of connection: 	wifi, 3G, data roaming etc. 
+	
+	loop	
+	Another boolean attribute that indicates to play the video in loop mode (and it starts again when finished).
+	
+*Tenga cuidado si usted apuntar aplicaciones móviles o si tiene varios vídeos en la misma página*
+
+El atributo de reproducción automática no se recomienda si su sitio web se dirige a las aplicaciones móviles, ya que puede consumir ancho de banda, incluso si el usuario no está interesado en ver el video propuesto. Si usted apunta dispositivos móviles, se recomienda utilizar la precarga = ninguno, así, como el valor por defecto de este atributo es auto.
+
+
+*Best practice: do not use autoplay and add preload="none" if you target mobile devices or if you have multiple audio/video on the same page. For example, this page  contains many audio elements and it does not make sense to have them preload or autoplay.*
+
+*About the poster attribute*
+
+Si el atributo poster no se encuentra, por lo general el primer cuadro no esté en blanco del video será utilizado como la imagen que se muestra cuando el vídeo no se reproduce
+
+*About the autoplay attribute for general use*
+
+No abuse del atributo autoplay. Hablamos antes sobre las aplicaciones móviles, pero incluso en las aplicaciones de escritorio por lo general es una mala idea para usarlo (a excepción de Webcam y para algunas animaciones con pequeños bucles de vídeo, sin sonido, o de sitios como YouTube, con sólo videos). Este es el testimonio de un usuario en este foro curso: "Cuando estoy siguiendo las noticias, abro varios titulares en pestañas separadas Y entonces todos ellos empiezo a gritar a mí con algunas autoplays Sé que se supone que me hacen.. ver el video, pero para mí - me hace cerrar la pestaña en voz alta e intento otra fuente ".
+
+*Práctica recomendada: pensar dos veces antes de usar el atributo de reproducción automática, incluso para las aplicaciones de escritorio.*
+
+##ATTRIBUTES OF THE < AUDIO > ELEMENT
+
+Los atributos que se pueden utilizar con el elemento < audio > son un subconjunto de los disponibles para el elemento <video>. Excepto para el atributo poster, todos ellos son reconocidos y tienen los significados que se esperan:
+
+	src: source of an audio stream
+	
+	controls: if this attribute is present, the browser displays its own controls for audio playback and volume.
+	
+	autoplay: tells the browser to start playing the audio stream automatically as soon as the page is ready - please read 		details in the above table.
+	
+	preload: tells the browser what to do before a user plays a video - please read details in the above table.
+	
+	loop:  indicates to play the audio stream in loop mode (start again when finished).
+	
+##Styling media players with CSS3
+
+The <video> and <audio> elements are just like other HTML elements, so CSS3 can be used for styling, including CSS3 transitions, animations and transforms. This was not possible with Flash technology.
+
+
+	<figure id="figaudio1">
+  		<img id="imghorse" width="200" src="http://upload.wikimedia.org/wikipedia/commons/d/d4/Nokota_Horses.jpg" alt 			= "a horse"/>
+  		<figcaption id="figcptionaudio1"> Press Play to hear the horse!
+    		<audio controls="controls">
+       			<source src="https://dl.dropboxusercontent.com/u/1631516/horse.ogg" type="audio/ogg" />
+       			<source src="https://dl.dropboxusercontent.com/u/1631516/horse.mp3" type="audio/mp3" />
+       			Your browser does not support the audio element. Download the audio/video in
+			 or <a href=”https://dl.dropboxusercontent.com/u/1631516/horse.mp3”>MP3</a> format.
+   		</audio>
+ 		</figcaption>
+	</figure>
+	
+*css*
+
+	#figaudio1 {
+    		width : 420px;;
+    		text-align:center;
+    		padding : 6px;
+    		background : white;
+    		margin : 0 11px 0px 0;
+    		border :solid 1px #888888;
+    		border-radius : 8px ;
+	}
+ 
+	#figcptionaudio1 {
+    		font-size : .8em;
+    		padding : 6px 8px;
+    		background : #dddddd;
+    		display :block;
+    		text-align :center;
+    		font-family : georgia, serif;
+    		font-style : italic;
+    		border-radius : 7px ;
+	}
+ 
+	#figaudio1 > img {
+    		background : #eeeeee;
+    		padding : 5px;
+    		border : solid 1px #444444;
+	}
+ 
+	/* For audio and img transitions/animation */
+	audio, #figaudio1 > img {
+    		transition:all 0.5s;
+	}
+ 
+	#figaudio1 > img:hover {
+    		box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+    		transform: scale(1.05);
+	}
+ 
+	audio:hover, audio:focus, audio:active {
+    		box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+    		transform: scale(1.05);
+	}
+
+#CHANGING THE SIZE OF A VIDEO ON THE FLY USING CSS3 TRANSFORMS
+
+Resizing and rotating a video as the mouse pointer comes over it
+
+This example uses the pseudo CSS class :hover in order to track the mouseover event. On mouseover, it uses a CSS3 transition property that interpolates the changes in the scale and orientation of the video element (done using a transform CSS property).
+
+	<video id="w3devCampusVideo" autoplay controls>
+     		<source src=http://html5doctor.com/demos/video-canvas-magic/video.webm type=video/webm>
+     		<source src=http://html5doctor.com/demos/video-canvas-magic/video.ogg type=video/ogg>
+     		<source src=http://html5doctor.com/demos/video-canvas-magic/video.mp4 type=video/mp4>
+	</video>
+	
+*css*
+
+	#w3devCampusVideo {
+    		width: 300px;
+    		transition: all 0.5s ease-in-out;
+	}
+ 
+	#w3devCampusVideo:hover {
+    		width:400px;
+    		transform:rotate(-5deg);
+	}
+	
+*FullScreen video that resizes and maintains ratios. Uses simple JavaScript to modify CSS properties*
