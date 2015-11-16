@@ -2015,3 +2015,158 @@ Source code extract of this function: notice at lines 3 and 26 how we save/resto
 With HTML5, forms, which had shown little improvement since 1997, evolved considerably.  To achieve this, web developers relied on many popular JavaScript frameworks for validating input formats, providing various input GUIs, such as calendars for dates, sliders, etc. Frameworks such as jQueryUI, Dojo, and Sencha all provide a widget set for improving forms. Furthermore, it was time to take into account the specifics of mobile web applications, where the GUI of a date chooser cannot be the same as a 400x400 pixel wide calendar on a desktop. Contextual virtual keyboards provided the way forward on smartphones and tablets thanks to Apple, Google and others.
 
 HTML5 took all this into account and now provides:
+
+
+A new set of input fields that include a validation API and visual feedback, contextualized keyboards, etc. Of course the look and feel depends on the web browser's implementations, but the HTML5 forms specification introduced 13 new < input type=.../ > fields:  email, tel, color, url, date, datetime, datetime-local, month, week, time, range, number and search.
+
+Built-in validation system: JavaScript API for custom validation, CSS pseudo classes that are useful for changing an input field style depending on the validity of the input.
+
+Other goodies, such as the option to set an input field out of a < form >, new elements such as < datalist > for autocompletion, < output > for feedback, etc.
+
+Examples of contextual keyboards are shown above; they differ depending on the type of  < input > fields in the < form >. In the example we can see: email, URL, and phone number. Look at the different keyboard layouts. The last picture is a date picker from an IOS phone.
+
+
+##HTML5 form examples
+
+INTRODUCTION
+
+In this section, we will show you what can be achieved with recent HTML5 additions for forms. Try the examples, enter erroneous values, submit the forms, and see what happens.
+
+There is a lot of course content covered this week, and before we get into all the details of the elements and attributes introduced by HTML5 we suggest playing with running examples of full featured forms.
+
+THE EXAMPLES
+
+These examples are creations by students from a previous version of this course, when it was hosted at the w3devcampus.com Web site (the W3C e-learning platform). They are given "as is". They use the geolocation API that will be presented in Week 6 for auto-filling the address input fields. This part will be explained next week.
+
+Feel free to look at the source code, and do not hesitate to ask questions in the forum if you need explanations.
+
+##Using input elements for a Web application GUI
+
+This page's video shows that input elements, in particular the new elements introduced by HTML5, can be used as widgets to control the behavior of a Web application. In this situation, they do not need to be inside a <form> element. We just bind event listeners to them and we use them as client-side widgets.
+
+##EXAMPLE 1: CHOOSE THE COLOR, LINE WIDTH AND SPEED OF AN ANIMATION
+
+Bouncing rectangle without GUI (JS Bin) 
+Bouncing rectangle with GUI (see screenshot at the top right of this page)
+Same example as above, on JS Bin, that uses polyfills for IE and Safari (spectrum.js for making <input type=color> work, and a small JS polyfill for making Math.sign() work too...). This is a good example of using a polyfill.
+
+##EXAMPLE 2: DATA VISUALIZATION CONTROL
+
+*Forms are a way to get user input which is sent to a remote server. This section of the course focuses on the HTML5 additions to forms, and as such will only cover the client-side part.*
+
+On the server side, you may have PHP, Java, C#, Ruby, Python, etc. components. There are several ways to collect server-side data from a form in a Web page: REST Web services, servlets, Microsoft ASP pages, etc.
+
+On the client side, the forms indicate to which server and how the data should be sent,  using the action and method attributes respectively. A <button type="submit"> or an <input type=submit> field is used to submit the form content.
+
+On the client side, the forms indicate to which server and how the data should be sent,  using the action and method attributes respectively. A < button type="submit" > or an < input type=submit > field is used to submit the form content.
+
+For example: <form action="myServerCode.php" method="POST">...</form>. Here, we set the URL of the server side code (myServerCode.php), and the HTTP method that will be used by the browser for sending the form content (POST).
+
+Another approach is to use JavaScript for sending the form content with Ajax.
+
+This week, we will study the new elements and attributes offered by HTML5, and will also cover the new HTML5 form validation API.
+
+##A FEW WORDS ABOUT PASSWORDS AND FORMS
+
+Note: this part of the course has been added thanks to a contribution by one of the students: PaulObeda.
+
+This course is about client side and HTML5. But we feel that it's important to give some advices when manipulating passwords. Between your browser and the server that will handle the data you entered in the input fields, there might be some proxies, some cache system: your passwords should not be stored there in plain text! We also recommend using HTTPS when your server sends an HTML page with a form that contains password fields, and we recommend that your server adds an encryption layer before storing the passwords in a database or in a file.
+
+	The general rule for passwords is:  "Hash before send (client side)! Encrypt after receipt! (server side)"
+	
+This example loads publicly available cryptographic libraries, then applies an MD5 hash prior when the (login) form is submitted, returning true to continue normal form processing (submission to the server).
+
+The server would still need to encrypt what it receives as it processed the form submission, but such a system ensures that what the user types as her password doesn't leave her computer, and what is received is further encrypted before being stored.
+
+A secure connection (SSL / TLS) should still be used; hashing the password client side doesn't replace it. But there are cases where a proxy or firewall might be present in the connection, and hashing the password provides some additional privacy versus the password appearing in simple plaintext at that point.
+
+The value is in making it harder to know the password clear text.
+
+Enhancements could include using something known - perhaps a couple characters from the user name or id - as a salt to include in the hash. If the hash is salted, then even knowing the hash doesn't give access to other sites where the same technique (when the same password) is used.
+
+##Creating accessible forms
+
+*Forms are commonly used to enable user interaction in Web sites and Web applications. For example for login, registering, commenting, and purchasing*
+
+Since HTML5 provides functionalities to assist with accessibility, developers should make a concerted effort to mark up Web based forms. The following two guidelines are to give you a good start to make your forms accessible:
+
+For every form field, ensure that a descriptive label is provided and use the <label> element to identify each form control.
+
+For larger or complex forms, use the <fieldset> and <legend> elements to respectively group and associate related form controls.
+
+We will give usage examples for each of these two basic guidelines in the following pages.
+
+FURTHER READING
+
+The WAI Web site hosts a Forms tutorial where you will find more guidelines to follow in order to make your forms truly accessible: Form Instructions, Validating Input, User Notifications, Multi-Page Forms, and Custom Controls.
+
+##Why is this important?
+
+Forms can be visually and cognitively complex and difficult to use. Accessible forms are easier to use for everyone, including people with disabilities.
+
+People with cognitive disabilities can better understand the form and how to complete it, as making forms accessible improves the layout structure, instructions, and feedback.
+
+People using speech input can use the labels via voice commands to activate controls and move the focus to the fields that they need to complete.
+
+People with limited dexterity benefit from large clickable areas that include the labels, especially for smaller controls, such as radio buttons and checkboxes.
+
+People using screen readers can identify and understand form controls more easily because they are associated with labels, field sets, and other structural elements.
+
+##Labeling controls
+
+*LABELS NEED TO DESCRIBE THE PURPOSE OF THE FORM CONTROL*
+
+Form fields and other form controls usually have visible labels, such as "E-mail Address:" as the label for a text field (see figure below).
+
+When these labels are marked up correctly, people can interact with them using only the keyboard, using voice input, and using screen readers. Also, the label itself becomes clickable, which enables a person who has difficulty clicking on small radio buttons or checkboxes to click anywhere on the label text.
+
+##ASSOCIATING LABELS EXPLICITLY
+
+Whenever possible, use the label element to explicitly associate text with form elements. The for attribute of the label must exactly match the id of the form control. 
+
+	<label for="first_name">Your First Name</label>
+	<input id="first_name" type="text" name="fname"/>
+	
+Alternative example 1
+
+Note that you can also include the <input> element inside the <label>...</label> element, and also add a <span lang="en"> for example, to indicate the language used in the label. Sometimes, nesting labels and inputs can also make CSS styling easier and produce better results with screen readers.
+
+Source code (with <input> inside the <label>):
+
+	<label for="first_name"><span lang:en">Your First Name</span>
+		<input id="first_name" type="text" name="fname"/>
+	</label>
+	
+Example 2 (click on the label "Subscribe to newsletter" to see the effect)
+
+	<label for="firstname">First name:</label>
+	<input type="text" name="firstname" id="firstname"><br>
+	
+	<label for="subscribe">Subscribe to newsletter</label>
+	<input type="checkbox" name="subscribe" id="subscribe">
+	
+LABELING BUTTONS
+
+The label of a < button > element is set inside the element and can include markup. This allows advanced accessibility hints to be included, such as marking up language change.
+
+Example: < button >Mon < span lang="fr" >bouton</ span ></ button >, for a button with a label in French.
+
+When using the <input> element to create buttons, the label is set in the value attribute of the element.
+
+Example: <input type="submit" value="Please submit">, that will be rendered as a button.
+
+Source code for an example of "Submit" and "Cancel" buttons:
+
+	<button type="submit">Submit</button>
+	<button type="button">Cancel</button>
+ 
+	<input type="submit" value="Submit">
+	<input type="button" value="Cancel">
+	
+#LABELING TEXT AREAS
+
+	<label for="address">Enter your address:</label><br> <textarea id="address" name="addresstext"></textarea>
+	
+##Grouping controls
+	
+
