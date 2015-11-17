@@ -2169,4 +2169,82 @@ Source code for an example of "Submit" and "Cancel" buttons:
 	
 ##Grouping controls
 	
+Groupings of form controls, typically groups of related checkboxes and radio buttons, sometimes require a higher level description. Grouping related form controls makes forms more understandable for all users, as related controls are easier to identify.
+
+##ASSOCIATING RELATED CONTROLS WITH FIELDSET
+
+Grouping needs to be carried out visually and in the code, for example, by using the <fieldset> and <legend> elements to associate related form controls. The <fieldset> identifies the entire grouping and <legend> identifies the grouping's descriptive text.
+
+Example 1 - Radio buttons
+
+In the example below, there are three radio buttons that allow the user to choose an output format. Radio button groups should always be grouped using <fieldset>.
+
+	<fieldset>
+	<legend>Output format</legend>
+ 		<div>
+ 			<input type="radio" name="format" id="txt" value="txt" checked>
+ 			<label for="txt">Text file</label>
+ 		</div>
+ 		<div>
+ 			<input type="radio" name="format" id="csv" value="csv">
+ 			<label for="csv">CSV file</label>
+ 		</div>
+		[…]
+	</fieldset>
+	
+Example 2 - Checkboxes
+
+In the example below, there are three checkboxes that are all part of an opt-in function for receiving different types of information.
+
+	<fieldset>
+	<legend>I want to receive</legend>
+		<div>
+			<input type="checkbox" name="newsletter" id="check_1">
+			<label for="check_1">The weekly newsletter</label>
+		</div>
+		[…]
+	</fieldset>
+
+ASSOCIATING RELATED CONTROLS WITH WAI-ARIA
+
+WAI-ARIA provides a grouping role that functions similarly to fieldset and legend. For example, a div element can have role=group to indicate that the contained elements are members of a group.
+
+WAI-ARIA roles are very important in the accessibility world, and we invite you to see an example provided in the associated WAI tutorial. This article by Oscar Cao gives an Introduction to understanding WAI-ARIA 1.0 roles.
+
+##Thirteen new input types!
+
+In this section, we briefly present the new input types, attributes, and elements related to the forms that came with HTML5. Details will be given later, illustrated by multiple interactive examples. We will not focus on HTML4 forms, however.
+
+
+HTML5 introduced 13 new input types, covering most of the needs reported by Web developers who until now had relied on JavaScript frameworks. HTML5 packages some of the "form best practices" in its specification. Web browsers providing native implementation will give a boost in performance, and reduce the size of JavaScript embedded in complex Web pages.
+
+HTML5
+
+color
+date
+datetime
+datetime-local
+email
+month
+number
+range
+search
+tel
+time
+url
+
+
+The "file" type is disabled on IOS as this operating system does not give access to a filesystem.
+
+Five HTML5 types are variants about choosing a date (in red)
+
+Now, let's play with some small examples and  use these new input types and attributes.
+
+
+##< input type=color >
+
+
+
+
+
 
