@@ -2244,6 +2244,170 @@ Now, let's play with some small examples and  use these new input types and attr
 ##< input type=color >
 
 
+INTRODUCTION
+
+For years we used hundreds of lines of JavaScript for selecting colors, but now it's bundled in the browser.
+
+Here is how it looks on a mobile device: the first screenshot is from Opera mobile, the second with Chrome mobile, and the third on Blackberry.  Note that, although no screenshot is shown here, FireFox mobile also has support.
+
+TYPICAL USE
+
+Inserting a color chooser is as simple as:
+
+	<!DOCTYPE html>
+	<html>
+	<body>
+    		Choose a color : <input type="color" value="#FF00FF"/>
+	</body>
+	</html>
+
+Note: In this chapter we are simplifying the examples, as we usually embed input elements in a < form >...</ form >.
+
+Try < input type="color" > online on this JS Bin example. Or do it here in your browser: just click the purple square (and if you don't see a light purple square, it means that you are using either Safari or Internet Explorer - see "current support" below): 
+
+Here is the result on Google Chrome:
+
+##EXAMPLE: CHANGING THE BACKGROUND COLOR OF THE PAGE
+
+The < input type="color" > can fire change or input events. Here is an example that changes the background color of the page when a color is chosen. Try it online at JS Bin.
+
+	<!DOCTYPE html>
+	<html>
+	<body>
+  	Select a color : <input type="color" id="colorChooser"/>
+  	<script>
+     	var colorInputField = document.querySelector("#colorChooser");
+     	colorInputField.addEventListener('input', function(evt) {
+          	document.body.style.backgroundColor = this.value;
+      	}, false);
+ 	</script>
+	</body>
+	</html>
+	
+##PROPOSE A LIMITED CHOICE OF COLORS
+
+By default, the color selector offers many options that may either frighten some users or just not be appropriate for the purpose of the application. 
+
+Good news: it is possible to restrict the choices, and also simplify the user interface, by using a < datalist > with some < option > elements inside. This feature is not yet (as at April 2015) supported by all browsers, check this compatibility table.
+
+
+Example: if you are using Opera or Chrome, click the black rectangle on the right:  . The following should be displayed:
+
+	<input type="color" value="#333333" list="colors">
+ 	<datalist id="colors">
+     		<option>#0000FF</option>
+     		<option>#00FF00</option>
+     		<option>#FF0000</option>
+ 	</datalist>
+ 	
+ Note that the id of the <datalist> element should be the same as the value of the list attribute of the input field.
+ 
+ *Warning: color values must use the CSS hexadecimal notation; using 'blue', 'green' and 'red' does not work in current implementations.*
+ 
+ ##CURRENT SUPPORT FOR < INPUT TYPE="COLOR" >
+ 
+ As at April 2015, Safari and Internet Explorer still do not support this input type, as shown in the table below:
+ 
+ ##Several polyfills are available
+ 
+ If you click on the link to the caniuse.com support table, you will find links to polyfills. There are a few available on the Web, and some are included in Modernizr.com (a JavaScript library that detects HTML5 and CSS3 features in the user’s browser).
+ 
+ Below is an example with the polyfill spectrum.js. See how it renders in Safari (the same code renders natively on browsers that support < input type="color" >):
+ 
+ For those of you who would prefer using a CDN, here is another example that uses this polyfill, directly on JS Bin. You just have to include two lines in the HTML and your < input type=range > will work on Safari and IE too :-) Notice that this polyfill does not fire the input event, only the change event, when a color is picked.
+ 
+ We just added these two lines inside the < head >..</ head > element:
+ 
+ 	<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.7.0/spectrum.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.6.1/spectrum.min.css">
+	
+And here is the HTML code (note, you first need to download the lib from the Web site):
+
+	<!doctype html>
+	<html>
+	<head>
+ 		<title>Spectrum polyfill example, for input type=color</title>
+ 		<link rel="stylesheet" type="text/css" href="../spectrum.css">
+ 		<script type="text/javascript" src="../docs/jquery-1.9.1.js"></script>
+ 		<script type="text/javascript" src="../spectrum.js"></script>
+	</head>
+	<body>
+     		<input type="color" onchange="alert(this.value);"></p>
+	</body>
+	</html>
+	
+##THE MAIN PROBLEMS WITH THIS ELEMENT
+
+The main criticism that Web designers make about this element is related to its default appearance being strongly dependent on the browser and its underlying operating system. Changing the look and feel is not possible, except with the use of the options we saw in the previous sections of this page. This problem is also true for other input elements that renders as complex widgets, like < input type="date" > and its variants.
+
+Another problem is that there is no way to control where the dialog that contains the color chooser will appear - no positioning via CSS or JavaScript is possible. The specification does not say anything about how to position it over the page, thus the result is vendor specific.
+
+The solution proposed by the W3C and its contributors is called Web Components, a new approach for designing HTML5 widgets, that will be covered in the HTML5 Part-2 course.
+
+Below are the different look'n'feels on different versions of different browsers.
+
+
+
+
+##The < input type="date" > and its variants (datetime, datetime-local, time, month, week)
+
+INTRODUCTION
+
+javascript date picker, barred
+
+For years, date and time pickers in HTML forms made Web developers rely heavily on JavaScript based widgets. The process is simpler in HTML5, which provides a special control to handle this specific kind of data natively. All mobile browsers support <input type="time"> and <input type="date">, while support on desktop computers is not yet as good.
+
+Below are a few screenshots of the HTML5 date picker on several mobile devices. Note that the native date pickers of the operating systems are used:
+
+The problem is different on a desktop. While it's great to have native support for a date picker, Web developers would sometimes prefer 100% control over the look and feel of the date picker widget. For this purpose, the solution undoubtedly lies with the new Web Components (a way to make custom reusable widgets in HTML/CSS/JS), that will be detailed in the HTML5 Part-2 course.
+
+In this course, we will focus on native implementations. Desktop support is currently not 100% (see the "current support" section below), so it is better to try the following examples with Opera or Chrome.
+
+On non-supported browsers, it defaults to an < input type="text" > input field.
+
+##TYPICAL USE OF < INPUT TYPE="DATE" >
+
+Default use
+
+The default usage is something like:
+
+< label for="birthday" >Choose birthday party date: </ label >
+< input type="date" id="birthday" >
+
+Most of the time you will add other attributes to give some restrictions (choose a date in the past, in the future, only on a Saturday, etc.).
+
+Restrict choice to an interval of dates: attributes min, max and value
+
+The <input type="date"> comes with several useful attributes. In particular the value, min and max attributes are used to propose a default date, a min and a max date, or for defining an interval of acceptable values.
+
+Try this example: just click the next input field: , or try it online on JS Bin if you want to tweak the source code: 
+
+Errata: the online example is correct, but the above screenshot shows a year equal to "2014" for the max attribute, which is incorrect.
+
+Source code:
+
+	...
+ 	<input type="date" id="birthdayParty" value="2015-06-20" min="2015-06-20" max="2015-07-31">
+	...
+ 
+#Choosing one day in a given week, etc. with the step: attribute
+
+Using the value attribute for setting a date, and using step=7 for example, will make acceptable only the day of the week that corresponds to the value's day (e.g.: only Mondays). Using step=2 will make acceptable only every other day, etc.
+
+Example: we want to celebrate birthday parties only on Saturdays, check this on JS Bin!
+
+Errata: the online example is correct, but the above screenshot shows a year equal to "2014" for the max attribute, which is incorrect.
+
+Extract from source code:
+
+	<input type="date" id="birthdayParty" value="2015-06-20" min="2015-06-20" max="2015-07-31" step="7">
+
+##Combining with the <datalist> element to restrict the choice of possible values
+
+This feature is not yet (in 2015) supported by all browsers, check this compatibility table.
+
+Online example at JS Bin
 
 
 
