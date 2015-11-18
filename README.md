@@ -2403,12 +2403,58 @@ Extract from source code:
 
 	<input type="date" id="birthdayParty" value="2015-06-20" min="2015-06-20" max="2015-07-31" step="7">
 
-##Combining with the <datalist> element to restrict the choice of possible values
+##Combining with the < datalist > element to restrict the choice of possible values
 
 This feature is not yet (in 2015) supported by all browsers, check this compatibility table.
 
 Online example at JS Bin
 
+	<input type="date" id="birthdayParty" list="birthdayPartyPossibleDates" value="2015-06-20">
+ 		<datalist id="birthdayPartyPossibleDates">
+     		<option label="Best for me">2015-06-20</option>
+     		<option label="Ok for me too ">2015-06-27</option>
+     		<option label="This one is a sunday, hmmm">2015-06-28</option>
+	 </datalist>
 
+
+The list attribute of the input element must match the id attribute of the datalist element.
+
+If you use the min, max, or step attributes with a list attribute, it may filter the restricted list even more. Check this example on JS Bin (tested with Google Chrome), that has a restricted list of three elements, one of which is filtered because it is not in in the min/max range.
+
+##RESPONDING TO DATE CHANGES, TRYING DATE/TIME AND OTHER VARIANTS
+
+Listening to the input event
+
+Here is an interactive example at JS Bin where you can change the type of date/time chooser. It also shows how to listen to the input event when a date/time is chosen.
+
+Source code:
+
+	<!DOCTYPE html>
+	<html>
+	<body>
+	Testing the new date input field. So far works only in Chrome and Opera browsers.<p>
+	Choose a date/time : <input type="date" id="date" /><p>
+	<p>
+	You picked: <span id="pickedDate"></span>
+	 </p>
+	After you have tried the first example, change the value of the "type" attribute to:
+	<ul>
+	<li>datetime</li>
+	<li>datetime-local</li>
+	<li>time</li>
+	<li>week</li>
+	<li>month</li>
+	</ul>
+	And see the result.
+	<script>
+ 	var field = document.querySelector("#date");
+ 	var result = document.querySelector("#pickedDate");
+	field.oninput = function(evt) {
+   	var date = this.value;
+   	pickedDate.innerHTML = "<b>"+date+"</b>";
+	}
+	 </script>
+	</body>
+	</html>	
 
 
